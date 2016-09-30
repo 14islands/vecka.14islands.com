@@ -8,5 +8,15 @@
   <body>
     <h1 class="weekNumber"><%= weekNumber %></h1>
     <h2 class="weekDaysText"><%= weekDaysText %></h2>
+    <script>
+      if ('serviceWorker' in navigator) {
+        console.log('Service Worker is supported');
+        navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
+          console.log('Service Worker registered');
+        }).catch(function(err) {
+          console.log('Service Worker error', err);
+        });
+      }
+    </script>
   </body>
 </html>
