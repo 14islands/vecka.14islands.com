@@ -2,6 +2,20 @@
 
 Always know what week number it. Essential when living in Sweden.
 
+## Getting started
+
+```
+npm install
+npm start
+```
+
+## Deploy
+
+App is [running in production](https://vecka.herokuapp.com/).
+
+```
+git push heroku master
+```
 
 ## Upcoming Features
 

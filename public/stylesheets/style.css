@@ -8,16 +8,29 @@ body {
   height: 100%;
 }
 body {
-  font-family: sans-serif;
-  font-size: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #eccd00;
   -webkit-font-smoothing: antialiased;
 }
+body {
+  font-family: sans-serif;
+  font-size: 100%;
+  display: flex;
+}
+h1 {
+  font-size: 5rem;
+}
+@media (min-width: 700px) {
+  h1 {
+    font-size: 6rem;
+  }
+}
+h2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
 .weekNumber {
-  font-size: 12vw;
   color: rgba(253,250,230,1);
 }
