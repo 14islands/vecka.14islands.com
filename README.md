@@ -4,8 +4,21 @@ Always know what week number it. Essential when living in Sweden.
 
 ## Getting started
 
+Install:
+
 ```
 npm install
+```
+
+Run in development mode:
+
+```
+DEBUG=vecka.14islands.com:* npm start
+```
+
+Run in production mode:
+
+```
 npm start
 ```
 
@@ -23,3 +36,4 @@ git push heroku master
 * Swipe left for previous week & right for next week
 * Click for Timeline
 * Use 14islands color palette and blend between, so each day has it's unique color
+* Use 14islands font with fonts-api
