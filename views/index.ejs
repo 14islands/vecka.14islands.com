@@ -8,7 +8,7 @@
   </head>
   <body>
     <% for(var i=0; i< weeks.length; i++) {%>
-    <div class="week <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>">
+    <div class="week <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>" style="left: <%= (weeks[i].getIndex()*100) %>%">
       <h1 class="week-number"><%= weeks[i].getNumber() %></h1>
       <h2 class="week-daysText"><%= weeks[i].getDayText() %></h2>
     </div>

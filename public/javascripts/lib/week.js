@@ -3,11 +3,16 @@ var moment = require('moment');
 // Constructor
 function Week(weekIndex = 0) {
   moment.locale('sv');
-  this.current = moment().add(weekIndex, 'weeks')
+  this.index = weekIndex;
+  this.current = moment().add(this.index, 'weeks');
 };
 
 Week.prototype.isTodaysWeek = function() {
   return this.current.isSame(moment(), 'w');
+};
+
+Week.prototype.getIndex = function() {
+  return this.index;
 };
 
 Week.prototype.formatDate = function(date) {

@@ -10,6 +10,9 @@ body {
 body {
   background-color: #eccd00;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 body {
   font-family: sans-serif;
@@ -34,13 +37,11 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-.week.isCurrent {
-  display: flex;
 }
 .week-number {
   color: rgba(253,250,230,1);
