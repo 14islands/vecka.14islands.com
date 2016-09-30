@@ -8,9 +8,6 @@ body {
   height: 100%;
 }
 body {
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: #eccd00;
   -webkit-font-smoothing: antialiased;
 }
@@ -31,6 +28,20 @@ h2 {
   font-size: 1rem;
   font-weight: normal;
 }
-.weekNumber {
+.week {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.week.isCurrent {
+  display: flex;
+}
+.week-number {
   color: rgba(253,250,230,1);
 }

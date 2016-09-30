@@ -4,10 +4,16 @@
     <title>Vecka - 14islands.com</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
   </head>
   <body>
-    <h1 class="weekNumber"><%= weekNumber %></h1>
-    <h2 class="weekDaysText"><%= weekDaysText %></h2>
+    <% for(var i=0; i< weeks.length; i++) {%>
+    <div class="week <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>">
+      <h1 class="week-number"><%= weeks[i].getNumber() %></h1>
+      <h2 class="week-daysText"><%= weeks[i].getDayText() %></h2>
+    </div>
+    <% } %>
+
     <script>
       if ('serviceWorker' in navigator) {
         console.log('Service Worker is supported');

@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "version": "1.0.1",
+  "name": "Vecka - 14islands",
+  "short_name": "Vecka",
+  "description": "A plain text description",
+  "default_locale": "se",
+  "icons": [
+    {
+      "src": "/images/launcher-icons/launcher-icon-0-75x.png",
+      "sizes": "36x36",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icons/launcher-icon-1x.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icons/launcher-icon-1-5x.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icons/launcher-icon-2x.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icons/launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/launcher-icons/launcher-icon-4x.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eccd00",
+  "theme_color": "#eccd00"
+}
