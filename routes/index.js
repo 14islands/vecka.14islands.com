@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var weeks = require('./../public/javascripts/lib/weeks');
+var weeks = require('./../public/models/weeks');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

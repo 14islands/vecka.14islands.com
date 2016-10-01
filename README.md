@@ -13,7 +13,7 @@ npm install
 Run in development mode:
 
 ```
-DEBUG=vecka.14islands.com:* npm start
+npm run devloader
 ```
 
 Run in production mode:
