@@ -7,7 +7,8 @@ console.log('Service Worker loading...')
 var CACHE_NAME = 'vecka-14islands-com-cache-v1';
 var urlsToCache = [
   '/',
-  '/stylesheets/style.css'
+  '/stylesheets/style.css',
+  '/javascripts/main.js'
 ];
 
 // Open cache and store assets

@@ -1,9 +1,9 @@
 var moment = require('moment');
 
 // Constructor
-function Week(weekIndex = 0) {
+function Week(weekIndex) {
   moment.locale('sv');
-  this.index = weekIndex;
+  this.index = weekIndex || 0;
   this.current = moment().add(this.index, 'weeks');
 };
 
