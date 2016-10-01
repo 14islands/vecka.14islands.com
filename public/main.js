@@ -1,4 +1,8 @@
 import ComponentLoader from 'component-loader-js';
 
-const componentLoader = new ComponentLoader({})
+import Weeks from './components/Weeks/Weeks';
+
+const componentLoader = new ComponentLoader({
+  Weeks
+})
 componentLoader.scan();

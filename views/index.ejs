@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
   </head>
-  <body>
+  <body data-component="Weeks">
     <% for(var i=0; i< weeks.length; i++) {%>
     <div class="week <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>" style="left: <%= (weeks[i].getIndex()*100) %>%">
       <h1 class="week-number"><%= weeks[i].getNumber() %></h1>
