@@ -1,15 +1,26 @@
-.week
-  position: absolute;
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
+.Weeks
+  position: relative
+  height: 100%
   width: 100%
+  overflow: hidden
 
-  display: flex
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  &-cards
+    position: relative
+    height: 100%
+    transition: transform 300ms ease.inOutCirc
+    cursor: grab
 
-.week-number
-   color: blend(rgba(#FFFFFF, 0.9), #eccd00)
+  &-card
+    position: relative;
+    height: 100%
+    width: 100%
+    float: left
+
+    display: flex
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  &-number
+     color: blend(rgba(#FFFFFF, 0.9), color.background)
+     cursor: pointer

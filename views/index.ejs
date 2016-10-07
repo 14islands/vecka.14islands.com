@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
   </head>
-  <body data-component="Weeks">
-    <% for(var i=0; i< weeks.length; i++) {%>
-    <div class="week <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>" style="left: <%= (weeks[i].getIndex()*100) %>%">
-      <h1 class="week-number"><%= weeks[i].getNumber() %></h1>
-      <h2 class="week-daysText"><%= weeks[i].getDayText() %></h2>
+  <body>
+    <div class="Weeks" data-component="Weeks" data-weeks-count="<%= weeks.length %>">
+      <div class="Weeks-cards">
+        <% for(var i=0; i< weeks.length; i++) {%>
+        <div class="Weeks-card <% if(weeks[i].isTodaysWeek()) { %>isCurrent<% } %>">
+          <h1 class="Weeks-number"><%= weeks[i].getNumber() %></h1>
+          <h2 class="Weeks-daysText"><%= weeks[i].getDayText() %></h2>
+        </div>
+        <% } %>
+      </div>
     </div>
-    <% } %>
     <script src="/main.js"></script>
     <script>
       if ('serviceWorker' in navigator) {

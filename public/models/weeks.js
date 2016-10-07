@@ -2,18 +2,21 @@ var Week = require('./week')
 
 function Weeks() {
   this.list = []
+  this.load();
 };
 
-Weeks.prototype.getList = function() {
+Weeks.prototype.load = function() {
   var index = 0;
-  var numberOfWeeks = 56; // Show all weeks per year + 4
+  var numberOfWeeks = 70; // Show all weeks per year + 4
 
   for (var i = 0; i < numberOfWeeks; i++) {
     var week = new Week(index);
     this.list.push(week);
     index++;
   }
+};
 
+Weeks.prototype.getList = function() {
   return this.list;
 };
 
