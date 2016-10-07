@@ -46,7 +46,7 @@ class Weeks extends Component {
       mc.on("panright", this._onPanRight);
       mc.on("panend", this._onPanEnd);
 
-      //window.onresize = debounce(this._onWindowResize.bind(this), 500).bind(this)
+      window.onresize = debounce(this._onWindowResize.bind(this), 500)
     }
 
     /*
