@@ -26,8 +26,8 @@ class Weeks extends Component {
       this.cardsWidthPx = `${this.viewPortWidth*this.numberOfWeeks}px`
 
       this.cardListElement.style.width = this.cardsWidthPx
-      for (let element of this.cardElements) {
-        element.style.width = this.viewPortWidthPx
+      for (let i = 0; i < this.cardElements.length; i++) {
+        this.cardElements[i].style.width = this.viewPortWidthPx
       }
     }
 
@@ -46,7 +46,7 @@ class Weeks extends Component {
       mc.on("panright", this._onPanRight);
       mc.on("panend", this._onPanEnd);
 
-      window.onresize = debounce(this._onWindowResize.bind(this), 500)
+      //window.onresize = debounce(this._onWindowResize.bind(this), 500).bind(this)
     }
 
     /*
