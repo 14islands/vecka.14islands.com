@@ -17,6 +17,7 @@ class Weeks extends Component {
         this._isBusyUpdating = false
         this._animation = { isRunning: false }
         this._scrollItemWidth = 60
+        this._sidePadding = 30
         this._weekIndex = 0
 
         // elements
@@ -26,7 +27,7 @@ class Weeks extends Component {
         this.cardElements = this.el.getElementsByClassName('Weeks-cardWrapper')
 
         // init scroll
-        const listWidth = this._scrollItemWidth * this.numberOfWeeks
+        const listWidth = (this._scrollItemWidth * this.numberOfWeeks) + this._sidePadding
         this.scrollerListElement.style.width = `${listWidth}px`
         this.scrollerElement.scrollLeft = 0
         this.scrollerWrapperElement.classList.add('isVisible')
