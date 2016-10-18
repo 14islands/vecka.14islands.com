@@ -6,21 +6,67 @@
 
   &-cards
     position: relative
-    height: 100%
-    transition: transform 300ms ease.inOutCirc
-    cursor: grab
+    z-index: 20
 
   &-card
     position: relative;
-    height: 100%
-    width: 100%
-    float: left
 
-    display: flex
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding-top: 20vh
+    padding-left: 2rem
+
+  &-label
+    padding-left: .2rem
+
+  &-cardWrapper
+    display: none
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    &.isSelected
+      display: flex
 
   &-number
-     color: blend(rgba(#FFFFFF, 0.9), color.background)
      cursor: pointer
+     padding-right: 1rem
+
+  &-dateWrapper
+    padding-top: .3rem
+
+  &-startDay,
+  &-endDay,
+  &-year,
+  &-index
+    display: block
+
+  &-scrollerWrapper
+    overflow: hidden
+
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: -100px // hides scrollbar
+    z-index: 10
+
+  &-scroller
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    width: 100%
+    height: 100%
+
+  &-scrollerList
+    display: flex
+    align-items: flex-start
+    flex-wrap: nowrap
+    white-space: nowrap
+
+    position: relative
+    top: 76vh
+    width: (100px * 60)
+
+  &-scrollerItem
+    height: 2px
+    flex: 1
+    margin: 2px
+    background: hotpink

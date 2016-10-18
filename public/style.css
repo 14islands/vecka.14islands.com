@@ -6,26 +6,38 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 body {
-  background-color: #eccd00;
+  background-color: #f6f6f6;
+}
+@font-face {
+  font-family: 'sweden_sansregular';
+  src: url("/fonts/swedensans-webfont.woff2") format('woff2'), url("/fonts/swedensans-webfont.woff") format('woff');
+  font-weight: 500;
+  font-style: normal;
 }
 body {
-  font-family: sans-serif;
-  font-size: 100%;
+  font-family: 'sweden_sansregular', sans-serif;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
+  color: #186b4e;
 }
 h1 {
-  font-size: 5rem;
+  font-size: 6.944444444444445rem;
+  font-weight: 500;
+  line-height: 1;
 }
 @media (min-width: 700px) {
   h1 {
     font-size: 8rem;
   }
 }
-h2 {
-  font-size: 1rem;
-  font-weight: normal;
+.t-dateTime {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #909090;
+  line-height: 1.3;
 }
 .Weeks {
   position: relative;
@@ -35,21 +47,65 @@ h2 {
 }
 .Weeks-cards {
   position: relative;
-  height: 100%;
-  transition: transform 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
-  cursor: grab;
+  z-index: 20;
 }
 .Weeks-card {
   position: relative;
-  height: 100%;
-  width: 100%;
-  float: left;
+  padding-top: 20vh;
+  padding-left: 2rem;
+}
+.Weeks-label {
+  padding-left: 0.2rem;
+}
+.Weeks-cardWrapper {
+  display: none;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
+}
+.Weeks-cardWrapper.isSelected {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .Weeks-number {
-  color: rgba(253,250,230,1);
   cursor: pointer;
+  padding-right: 1rem;
+}
+.Weeks-dateWrapper {
+  padding-top: 0.3rem;
+}
+.Weeks-startDay,
+.Weeks-endDay,
+.Weeks-year,
+.Weeks-index {
+  display: block;
+}
+.Weeks-scrollerWrapper {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -100px;
+  z-index: 10;
+}
+.Weeks-scroller {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+}
+.Weeks-scrollerList {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  position: relative;
+  top: 76vh;
+  width: 6000px;
+}
+.Weeks-scrollerItem {
+  height: 2px;
+  flex: 1;
+  margin: 2px;
+  background: #ff69b4;
 }

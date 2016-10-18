@@ -1,0 +1,47 @@
+/*
+* Base pixel for all REM/EM calcs
+*/
+baseFontSize = 18
+
+/*
+* Function for return value with a new unit
+* (or null if no value)
+*/
+setUnit(value, unit)
+  if value
+    value * unit
+
+/*
+* Function for converting pixel values to
+* relative rem value
+* @param context_px optional parameter for context font-size
+* --moz-device-pixel-ratiouses baseFontSize size as default
+*
+*/
+pxToRem(target_px = null, context_px = baseFontSize)
+  if target_px
+    setUnit(remove-unit(target_px) / context_px, 1rem)
+
+/*
+* Mixin for writing out a property with a
+* rem value and a px fallback
+*/
+pxToRemMulti(prop, first, second = null, third = null, fourth = null)
+  {prop}: pxToRem(first) pxToRem(second) pxToRem(third) pxToRem(fourth)
+
+/*
+* Function for ceonverting pixel values to relative rem value
+*
+* @param context_px optional parameter for context font-size
+* --moz-device-pixel-ratiouses baseFontSize size as default
+*
+*/
+pxToEm(target_px, context_px = baseFontSize)
+  if target_px
+    setUnit(target_px / context_px, 1em)
+
+/*
+ *	Mixin for writing out a property with an em value and a px fallback
+ */
+pxToEmMulti(prop, first, second = null, third = null, fourth = null, context_px = baseFontSize)
+  {prop}: pxToEm(first, context_px) pxToEm(second, context_px) pxToEm(third, context_px) pxToEm(fourth, context_px)
