@@ -16,16 +16,20 @@ class Weeks extends Component {
         this._updateFrame = null
         this._isBusyUpdating = false
         this._animation = { isRunning: false }
-        this._scrollItemWidth = 100
+        this._scrollItemWidth = 60
         this._weekIndex = 0
 
         // elements
+        this.scrollerWrapperElement = this.el.getElementsByClassName('Weeks-scrollerWrapper')[0]
         this.scrollerElement = this.el.getElementsByClassName('Weeks-scroller')[0]
-        this.cardListElement = this.el.getElementsByClassName('Weeks-cards')[0]
+        this.scrollerListElement = this.el.getElementsByClassName('Weeks-scrollerList')[0]
         this.cardElements = this.el.getElementsByClassName('Weeks-cardWrapper')
 
-        // init scroll position
+        // init scroll
+        const listWidth = this._scrollItemWidth * this.numberOfWeeks
+        this.scrollerListElement.style.width = `${listWidth}px`
         this.scrollerElement.scrollLeft = 0
+        this.scrollerWrapperElement.classList.add('isVisible')
 
         this._bindEvents()
 

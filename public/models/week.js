@@ -14,6 +14,10 @@ Week.prototype.isTodaysWeek = function() {
   return this.current.isSame(moment(), 'w');
 };
 
+Week.prototype.isFirstWeekOfYear = function() {
+  return this.getNumber() === 1
+};
+
 Week.prototype.formatDate = function(date) {
   return date.format("ddd, MMM Do");
 };

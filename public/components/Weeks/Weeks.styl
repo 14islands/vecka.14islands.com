@@ -4,15 +4,12 @@
   width: 100%
   overflow: hidden
 
-  &-cards
+  &-card
     position: relative
     z-index: 20
+    top: 20vh
+    left: 2rem
 
-  &-card
-    position: relative;
-
-    padding-top: 20vh
-    padding-left: 2rem
 
   &-label
     padding-left: .2rem
@@ -49,6 +46,12 @@
     bottom: -100px // hides scrollbar
     z-index: 10
 
+    opacity: 0
+    transition: opacity 100ms ease.inQuad
+
+    &.isVisible
+      opacity: 1
+
   &-scroller
     overflow: auto
     -webkit-overflow-scrolling: touch
@@ -63,10 +66,25 @@
 
     position: relative
     top: 76vh
-    width: (100px * 60)
 
   &-scrollerItem
     height: 2px
     flex: 1
-    margin: 2px
+    margin: 4px
     background: hotpink
+
+    position: relative;
+    text-align: center
+
+  &-scrollerItemYear
+    position: absolute
+    left: -5px
+    top: -5px
+    height: 40px
+    width: 2px
+    background: #ddd
+
+  &-scrollerItemYearText
+    position: absolute
+    top: 42px
+    left: -10px
