@@ -98,7 +98,7 @@ h1 {
   left: 35px;
   bottom: 100px;
   content: ' ';
-  display: block;
+  display: none;
   width: 0px;
   border-left: 1px dashed #ddd;
   height: 60vh;
