@@ -15,7 +15,7 @@ npm install
 Run in development mode:
 
 ```
-npm run devloader
+npm run dev
 ```
 
 Run in production mode:
@@ -23,6 +23,9 @@ Run in production mode:
 ```
 npm start
 ```
+
+Node version: 6.9.1 (JavaScript features: http://node.green/)
+
 
 ## Deploy
 
