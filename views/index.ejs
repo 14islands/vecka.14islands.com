@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Vecka - 14islands.com</title>
-    <link rel='stylesheet' href='/style.css?v=4' />
+    <link rel='stylesheet' href="<%= getVersionedPath('/style.css') %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="/manifest.json">
   </head>
@@ -39,16 +39,17 @@
         </div>
       </div>
     </div>
-    <script src="/main.js?v=4"></script>
+    <script src="<%= getVersionedPath('/main-compiled.js') %>"></script>
+
     <script>
-      if ('serviceWorker' in navigator) {
+      /*if ('serviceWorker' in navigator) {
         console.log('Service Worker is supported');
         navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
           console.log('Service Worker registered');
         }).catch(function(err) {
           console.log('Service Worker error', err);
         });
-      }
+      }*/
     </script>
   </body>
 </html>

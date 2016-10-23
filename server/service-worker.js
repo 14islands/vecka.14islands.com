@@ -8,7 +8,7 @@ var CACHE_NAME = 'vecka-14islands-com-cache-v1';
 var urlsToCache = [
   '/',
   '/style.css',
-  '/main.js',
+  '/main-compiled.js',
   '/fonts/swedensans-webfont.woff',
   '/fonts/swedensans-webfont.woff2'
 ];

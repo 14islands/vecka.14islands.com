@@ -5,7 +5,6 @@ function Week (weekIndex) {
   moment.locale('sv');
   this.index = weekIndex || 0;
   this.current = moment().add(this.index, 'weeks');
-  console.log('index', this.index, this.current.toString())
   this.startDayOfWeek = this.current.clone().startOf('isoweek');
 	this.endDayOfWeek =  this.current.clone().endOf('isoweek');
 };

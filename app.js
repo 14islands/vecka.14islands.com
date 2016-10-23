@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var browserify = require('browserify-middleware');
 var babelify = require('express-babelify-middleware')
-var routes = require('./routes/index');
+var routes = require('./server/routes');
 
 var app = express();
 
@@ -21,9 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-//app.use(browserify(path.join(__dirname, 'public')));
-app.use(babelify(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+
+// Uses for both service-worker and browser caching
+// See article: https://jakearchibald.com/2016/caching-best-practices/
+var staticify = require('staticify')(path.join(__dirname, 'public'));
+app.locals.getVersionedPath = staticify.getVersionedPath;
+app.use(staticify.middleware);
 
 app.use('/', routes);
 
