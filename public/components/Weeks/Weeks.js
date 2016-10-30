@@ -1,5 +1,4 @@
 import {Component} from 'component-loader-js';
-import Hammer from 'hammerjs';
 
 import debounce from '../../utils/debounce';
 

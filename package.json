@@ -9,7 +9,7 @@
     "browser-sync": "browser-sync start --logLevel info --proxy localhost:3000 --files 'public' 'views/*.ejs' 'routes/*.js' --port 3030",
     "build:js-prod": "browserify public/main.js -t babelify -g uglifyify | uglifyjs -c > public/main-compiled.js",
     "build": "npm run build:js-prod -s",
-    "watch:js": "watchify public/main.js -d -o 'exorcist assets/public.compiled.js.map > public/main-compiled.js' -t babelify",
+    "watch:js": "watchify public/main.js -d -o 'exorcist public/main-compiled.js.map > public/main-compiled.js' -t babelify",
     "watch": "npm-run-all --parallel watch:*",
     "postinstall": "npm run build"
   },

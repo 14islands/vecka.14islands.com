@@ -4,7 +4,7 @@ console.log('Service Worker loading...')
 // Created using this tutorial
 // https://developers.google.com/web/fundamentals/primers/service-worker/?hl=en
 
-var CACHE_NAME = 'vecka-14islands-com-cache-v1';
+var CACHE_NAME = 'vecka-14islands-com-cache-v2';
 var urlsToCache = [
   '/',
   '/style.css',
