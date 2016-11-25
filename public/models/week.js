@@ -18,7 +18,7 @@ Week.prototype.isFirstWeekOfYear = function() {
 };
 
 Week.prototype.formatDate = function(date) {
-  return date.format("ddd, MMM Do");
+  return date.format("ddd, Do MMM");
 };
 
 Week.prototype.getNumber = function() {

@@ -53,21 +53,10 @@ scrollItemMargin = 4px
     opacity: 0
     transition: opacity 100ms ease.inQuad
 
-    &:before
-      position: absolute
-      left: (sidePadding + scrollItemMargin + 1px)
-      bottom: 100px
-      content: ' '
-
-      display: none
-      width: 0px
-      border-left: 1px dashed #ddd
-      height: 60vh
-
     &:after
       position: absolute;
       top: calc(76vh - 1px)
-      left: (sidePadding + scrollItemMargin)
+      left: calc(50% - 2px)
       content: ' '
 
       display: block
@@ -78,6 +67,16 @@ scrollItemMargin = 4px
 
     &.isVisible
       opacity: 1
+
+  &-tester
+    position: fixed
+    top: 0
+    left: 0
+    right: 50%
+    bottom: 0
+
+    display: none
+    background: rgba(0, 200, 0, 0.5);
 
   &-scroller
     overflow: auto
@@ -94,7 +93,11 @@ scrollItemMargin = 4px
 
     position: relative
     top: 76vh
-    padding-left: sidePadding
+
+    // Set focus point in the middle
+    left: 50%
+    box-sizing: content-box
+    padding-right: 50%
 
   &-scrollerItem
     height: 2px
