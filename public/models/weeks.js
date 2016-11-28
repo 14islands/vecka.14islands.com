@@ -1,46 +1,26 @@
 var Week = require('./week')
 
-function Weeks() {
-  this.list = []
-  this.load();
-};
-
-Weeks.prototype.load = function() {
-  var index = 0;
-  var numberOfWeeks = 70; // Show all weeks per year + 4
-
-  for (var i = 0; i < numberOfWeeks; i++) {
-    var week = new Week(index);
-    this.list.push(week);
-    index++;
-  }
-};
-
-Weeks.prototype.getList = function() {
-  return this.list;
-};
-
-module.exports = new Weeks();
-
-/*import Week from './week';
-
-// publishing custom event to any registered listener
 class Weeks {
-    constructor() {
-        super(...arguments);
-        this.list = []
+
+  constructor () {
+    this.list = []
+    this.load()
+  }
+
+  load () {
+    var index = 0
+    var numberOfWeeks = 70 // Show all weeks per year + 4
+
+    for (var i = 0; i < numberOfWeeks; i++) {
+      var week = new Week(index)
+      this.list.push(week)
+      index++
     }
+  }
 
-    getList() {
-      const numberOfWeeks = 56; // Show all weeks per year + 4
-
-      for (let i = 0; i < numberOfWeeks; i++) {
-        var week = new Week(i);
-        this.list.push(week);
-      }
-
-      return this.list;
-    }
+  getList () {
+    return this.list
+  }
 }
 
-export default Weeks*/
+module.exports = new Weeks()

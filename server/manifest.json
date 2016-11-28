@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "version": "1.0.1",
-  "name": "Vecka - 14islands",
-  "short_name": "Vecka",
-  "description": "A plain text description",
+  "version": "{{version}}",
+  "name": "{{name}}",
+  "short_name": "{{shortName}}",
+  "description": "{{description}}",
   "default_locale": "se",
   "icons": [
     {
@@ -39,6 +39,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#eccd00",
-  "theme_color": "#eccd00"
+  "background_color": "{{backgroundColor}}",
+  "theme_color": "{{themeColor}}"
 }

@@ -1,47 +1,50 @@
-var moment = require('moment');
+var moment = require('moment')
 
 // Constructor
-function Week (weekIndex) {
-  moment.locale('sv');
-  this.index = weekIndex || 0;
-  this.current = moment().add(this.index, 'weeks');
-  this.startDayOfWeek = this.current.clone().startOf('isoweek');
-	this.endDayOfWeek =  this.current.clone().endOf('isoweek');
-};
+class Week {
 
-Week.prototype.isTodaysWeek = function() {
-  return this.current.isSame(moment(), 'w');
-};
-
-Week.prototype.isFirstWeekOfYear = function() {
-  return this.getNumber() === 1
-};
-
-Week.prototype.formatDate = function(date) {
-  return date.format("ddd, Do MMM");
-};
-
-Week.prototype.getNumber = function() {
-  return this.current.isoWeek();
-};
-
-Week.prototype.getStartDayText = function() {
-  return this.formatDate(this.startDayOfWeek)
-};
-
-Week.prototype.getEndDayText = function() {
-  return this.formatDate(this.endDayOfWeek)
-};
-
-Week.prototype.getYearText = function() {
-  if (this.startDayOfWeek.isSame(this.endDayOfWeek, 'y')) {
-    return this.startDayOfWeek.format("YYYY");
+  constructor (weekIndex) {
+    moment.locale('sv')
+    this.index = weekIndex || 0
+    this.current = moment().add(this.index, 'weeks')
+    this.startDayOfWeek = this.current.clone().startOf('isoweek')
+    this.endDayOfWeek = this.current.clone().endOf('isoweek')
   }
-  return this.startDayOfWeek.format("YYYY") + ' - ' + this.endDayOfWeek.format("YYYY");
+
+  isTodaysWeek () {
+    return this.current.isSame(moment(), 'w')
+  };
+
+  isFirstWeekOfYear () {
+    return this.getNumber() === 1
+  };
+
+  formatDate (date) {
+    return date.format('ddd, Do MMM')
+  };
+
+  getNumber () {
+    return this.current.isoWeek()
+  }
+
+  getStartDayText () {
+    return this.formatDate(this.startDayOfWeek)
+  }
+
+  getEndDayText () {
+    return this.formatDate(this.endDayOfWeek)
+  }
+
+  getYearText () {
+    if (this.startDayOfWeek.isSame(this.endDayOfWeek, 'y')) {
+      return this.startDayOfWeek.format('YYYY')
+    }
+    return this.startDayOfWeek.format('YYYY') + ' - ' + this.endDayOfWeek.format('YYYY')
+  }
+
+  getIndex () {
+    return this.index
+  };
 };
 
-Week.prototype.getIndex = function() {
-  return this.index;
-};
-
-module.exports =  Week;
+module.exports = Week

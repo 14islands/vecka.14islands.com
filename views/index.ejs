@@ -4,6 +4,7 @@
     <title>Vecka - 14islands.com</title>
     <link rel='stylesheet' href="<%= getVersionedPath('/style.css') %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="<%= themeColor %>">
     <link rel="manifest" href="/manifest.json">
   </head>
   <body>
@@ -46,7 +47,7 @@
     <script>
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js').then( function(reg) {
-          console.log('Service Worker register');
+          console.log('Service Worker register', reg);
         }).catch(function(err) {
           console.log('Service Worker error', err);
         });

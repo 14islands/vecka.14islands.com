@@ -53,12 +53,12 @@ function respondFromCacheThenNetwork (event) {
     fetchFromCache(event)
       .catch(() => fetch(request))
       .then(response => addToCache(request, response))
-      //.catch(() => offlineResponse())
+      .catch(() => offlineResponse())
     )
 }
 
 // Open cache and store assets
-self.addEventListener('install', function(event) {
+self.addEventListener('install', (event) => {
   // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -68,7 +68,7 @@ self.addEventListener('install', function(event) {
   )
 })
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', (event) => {
   if (event.request.headers.get('Accept').indexOf('text/html') >= 0) {
     respondFromNetworkThenCache(event)
   } else {
@@ -76,7 +76,7 @@ self.addEventListener('fetch', function(event) {
   }
 })
 
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', (event) => {
   var cacheWhitelist = [CACHE_NAME]
   // Clean up old cache versions
   event.waitUntil(
