@@ -104,12 +104,12 @@ h1 {
 }
 .Weeks-scrollerWrapper:after {
   position: absolute;
-  top: calc(76vh - 1px);
-  left: calc(50% - 2px);
+  top: calc(76vh - 4px);
+  left: calc(50% - 6px);
   content: ' ';
   display: block;
-  height: 4px;
-  width: 4px;
+  height: 12px;
+  width: 12px;
   background: #ff69b4;
   border-radius: 50px;
 }
@@ -149,7 +149,7 @@ h1 {
   padding-right: 50%;
 }
 .Weeks-scrollerItem {
-  height: 2px;
+  height: 4px;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;

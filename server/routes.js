@@ -10,6 +10,7 @@ var weeks = require('./../public/models/weeks')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
+    description: packageJson.description,
     themeColor: configJson.themeColor,
     weeks: weeks.getList()
   })
@@ -19,16 +20,14 @@ router.get('/', function (req, res, next) {
 router.get('/sw.js', function (req, res, next) {
   var fileContents = fs.readFileSync(path.join(__dirname, 'service-worker.js'), 'utf-8')
 
-  const stylePath = '/style.css'
-  const jsPath = '/main-compiled.js'
-  fileContents = fileContents.replace(stylePath, req.app.locals.getVersionedPath(stylePath))
-  fileContents = fileContents.replace(jsPath, req.app.locals.getVersionedPath(jsPath))
+  fileContents = fileContents.replace('{{stylesPath}}', req.app.locals.getVersionedPath('/style.css'))
+  fileContents = fileContents.replace('{{scriptsPath}}', req.app.locals.getVersionedPath('/main-compiled.js'))
 
   res.set('Content-Type', 'application/javascript')
   res.send(fileContents)
 })
 
-/* GET service worker. */
+/* GET manifest. */
 router.get('/manifest.json', function (req, res, next) {
   var fileContents = fs.readFileSync(path.join(__dirname, 'manifest.json'), 'utf-8')
 
@@ -40,6 +39,14 @@ router.get('/manifest.json', function (req, res, next) {
   fileContents = fileContents.replace('{{backgroundColor}}', configJson.backgroundColor)
 
   res.set('Content-Type', 'application/json')
+  res.send(fileContents)
+})
+
+/* GET manifest. */
+router.get('/browserconfig..xml', function (req, res, next) {
+  var fileContents = fs.readFileSync(path.join(__dirname, 'manifest.json'), 'utf-8')
+
+  res.set('Content-Type', 'application/xml')
   res.send(fileContents)
 })
 

@@ -721,11 +721,24 @@ var _Weeks2 = _interopRequireDefault(_Weeks);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+* Load Components
+*/
 var componentLoader = new _componentLoaderJs2.default({
   Weeks: _Weeks2.default
 });
-
 componentLoader.scan();
+
+/*
+* Register service worker
+*/
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function (reg) {
+    console.log('Service Worker register', reg);
+  }).catch(function (err) {
+    console.log('Service Worker error', err);
+  });
+}
 
 },{"./components/Weeks/Weeks":5,"component-loader-js":3}],7:[function(require,module,exports){
 "use strict";

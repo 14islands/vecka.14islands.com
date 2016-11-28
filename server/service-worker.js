@@ -5,8 +5,8 @@
 const CACHE_NAME = 'vecka-14islands-com-cache-v3'
 const urlsToCache = [
   '/',
-  '/style.css',
-  '/main-compiled.js',
+  '{{stylesPath}}',
+  '{{scriptsPath}}',
   '/fonts/swedensans-webfont.woff',
   '/fonts/swedensans-webfont.woff2'
 ]

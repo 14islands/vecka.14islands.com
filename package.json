@@ -1,13 +1,13 @@
 {
   "name": "Vecka",
-  "description": "Vet alltid vilken veckan det är",
+  "description": "Veta vilken veckan det är",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "DEBUG=vecka.14islands.com:* nodemon ./bin/www",
     "dev": "npm-run-all --parallel devstart watch browser-sync",
-    "browser-sync": "browser-sync start --logLevel info --proxy localhost:3050 --files 'public' 'views/*.ejs' 'routes/*.js' --port 3051",
+    "browser-sync": "browser-sync start --logLevel info --proxy localhost:3050 --files './public/' './views/*.ejs' --port 3051",
     "build:js-prod": "browserify public/main.js -t babelify -g uglifyify | uglifyjs -c > public/main-compiled.js",
     "build:css-prod": "stylus --include-css -c -u autoprefixer-stylus public/style.styl -o public/style.css",
     "build": "npm-run-all --parallel build:js-prod -s build:css-prod",
