@@ -15,7 +15,7 @@
     display: none
     flex-direction: row;
     justify-content: space-between;
-    align-content: flex-start;
+    align-items: center;
 
     &.isSelected
       display: flex
@@ -26,13 +26,10 @@
      padding-right: 1rem
 
   &-dateWrapper
-    padding-top: 2rem
     text-align: right;
 
-  &-startDay,
-  &-endDay,
-  &-year,
-  &-index
+  &-monthPeriod,
+  &-daysPeriod
     display: block
 
   &-scrollerWrapper
@@ -57,7 +54,7 @@
       display: block
       height: 36px
       width: 36px
-      border: 2px solid hotpink
+      border: 2px solid color.primary
       border-radius: 50px
 
     &.isVisible
@@ -70,7 +67,7 @@
     right: 50%
     bottom: 0
 
-    display: block
+    display: none
     //background: rgba(0, 200, 0, 0.5);
 
   &-scroller
@@ -110,4 +107,3 @@
   &-scrollerItemNumber
     position: relative
     top: -11px
-    color: hotpink

@@ -35,6 +35,21 @@ class Week {
     return this.formatDate(this.endDayOfWeek)
   }
 
+  getMonthPeriod () {
+    if (!this.startDayOfWeek.isSame(this.endDayOfWeek, 'year')) {
+      // If start and end of week in separate year
+      return `${this.startDayOfWeek.format('MMMM YYYY')} - ${this.endDayOfWeek.format('MMMM YYYY')}`
+    } else if (!this.startDayOfWeek.isSame(this.endDayOfWeek, 'month')) {
+      // If start and end of week in separate month
+      return `${this.startDayOfWeek.format('MMMM')} - ${this.endDayOfWeek.format('MMMM YYYY')}`
+    }
+    return this.startDayOfWeek.format('MMMM YYYY')
+  }
+
+  getDayPeriod () {
+    return `${this.startDayOfWeek.format('Do')} - ${this.endDayOfWeek.format('Do')}`
+  }
+
   getYearText () {
     if (this.startDayOfWeek.isSame(this.endDayOfWeek, 'y')) {
       return this.startDayOfWeek.format('YYYY')

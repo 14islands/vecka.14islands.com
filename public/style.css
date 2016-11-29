@@ -9,7 +9,7 @@ body {
   overflow: hidden;
 }
 body {
-  background-color: #f6f6f6;
+  background-color: #121738;
 }
 @font-face {
   font-family: 'sweden_sansregular';
@@ -21,11 +21,11 @@ body {
   font-family: 'sweden_sansregular', sans-serif;
   font-size: 18px;
   -webkit-font-smoothing: antialiased;
-  color: #186b4e;
+  color: #d17c78;
 }
 h1 {
-  font-size: 6.944444444444445rem;
-  font-weight: 500;
+  font-size: 5.555555555555555rem;
+  font-weight: 700;
   line-height: 1;
 }
 @media (min-width: 700px) {
@@ -33,22 +33,29 @@ h1 {
     font-size: 8rem;
   }
 }
-.t-dateTime {
-  font-size: 1.15rem;
+.t-label {
+  font-size: 0.8rem;
+  color: ;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+.t-monthPeriodLabel {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: ;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+.t-daysPeriod {
+  font-size: 1.4rem;
   font-weight: 500;
-  color: #909090;
+  color: ;
   line-height: 1.3;
 }
 .t-day {
   font-size: 1rem;
   font-weight: 500;
-  color: #909090;
-  line-height: 1.3;
-}
-.t-label {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: #909090;
+  color: ;
   line-height: 1.3;
 }
 .Weeks {
@@ -72,8 +79,9 @@ h1 {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .Weeks-cardWrapper.isSelected {
   display: -webkit-box;
@@ -86,13 +94,10 @@ h1 {
   padding-right: 1rem;
 }
 .Weeks-dateWrapper {
-  padding-top: 2rem;
   text-align: right;
 }
-.Weeks-startDay,
-.Weeks-endDay,
-.Weeks-year,
-.Weeks-index {
+.Weeks-monthPeriod,
+.Weeks-daysPeriod {
   display: block;
 }
 .Weeks-scrollerWrapper {
@@ -115,7 +120,7 @@ h1 {
   display: block;
   height: 36px;
   width: 36px;
-  border: 2px solid #ff69b4;
+  border: 2px solid;
   border-radius: 50px;
 }
 .Weeks-scrollerWrapper.isVisible {
@@ -127,7 +132,7 @@ h1 {
   left: 0;
   right: 50%;
   bottom: 0;
-  display: block;
+  display: none;
 }
 .Weeks-scroller {
   overflow: auto;
@@ -164,6 +169,5 @@ h1 {
 .Weeks-scrollerItemNumber {
   position: relative;
   top: -11px;
-  color: #ff69b4;
 }
 /*# sourceMappingURL=style.css.map */
