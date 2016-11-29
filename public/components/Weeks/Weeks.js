@@ -1,6 +1,6 @@
 import {Component} from 'component-loader-js'
 
-import debounce from '../../utils/debounce'
+// import debounce from '../../utils/debounce'
 import animateScrollX from '../../utils/animate-scroll-x'
 
 // publishing custom event to any registered listener
@@ -41,17 +41,27 @@ class Weeks extends Component {
       this.onScroll = this.onScroll.bind(this)
       this.onScrollEnd = this.onScrollEnd.bind(this)
       this.scrollerElement.addEventListener('scroll', this.onScroll)
-      this.scrollerElement.addEventListener("touchstart", () => {
+      this.scrollerElement.addEventListener('touchstart', () => {
         this._hasStartedTouch = true
-      }, false);
-      this.scrollerElement.addEventListener("touchend", () => {
+      }, false)
+      this.scrollerElement.addEventListener('touchend', () => {
         this._hasStartedTouch = false
         this.respondIfScrollEnd()
-      }, false);
+      }, false)
 
-      window.onresize = debounce(this._onWindowResize.bind(this), 500)
+      this.scrollerListElement.addEventListener('click', (e) => {
+        if (e.target.tagName.toLowerCase() === 'span') {
+          const parentElement = e.target.parentElement
+          const newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement)
+          const scrollX = this.scrollerElement.scrollLeft
+          const destination = newWeekIndex * this._scrollItemWidth
+          animateScrollX(this.scrollerElement, scrollX, destination)
+        }
+        console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML)
+      }, false)
+      // window.onresize = debounce(this._onWindowResize.bind(this), 500)
     }
-    // Window scroll event listener
+
     onScroll (e) {
       e.stopPropagation()
       this.requestScrollUpdate(e.target)
@@ -101,15 +111,6 @@ class Weeks extends Component {
 
     isValidWeek (index) {
       return (index > -1 && index < this.numberOfWeeks)
-    }
-
-    /*
-    * Events
-    */
-
-    _onWindowResize () {
-      // this._setCardWidths()
-      // this._setCurrentPosition()
     }
 
     /*

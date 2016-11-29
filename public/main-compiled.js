@@ -590,10 +590,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _componentLoaderJs = require('component-loader-js');
 
-var _debounce = require('../../utils/debounce');
-
-var _debounce2 = _interopRequireDefault(_debounce);
-
 var _animateScrollX = require('../../utils/animate-scroll-x');
 
 var _animateScrollX2 = _interopRequireDefault(_animateScrollX);
@@ -605,6 +601,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import debounce from '../../utils/debounce'
+
 
 // publishing custom event to any registered listener
 var Weeks = function (_Component) {
@@ -650,18 +649,26 @@ var Weeks = function (_Component) {
     this.onScroll = this.onScroll.bind(this);
     this.onScrollEnd = this.onScrollEnd.bind(this);
     this.scrollerElement.addEventListener('scroll', this.onScroll);
-    this.scrollerElement.addEventListener("touchstart", function () {
+    this.scrollerElement.addEventListener('touchstart', function () {
       _this2._hasStartedTouch = true;
     }, false);
-    this.scrollerElement.addEventListener("touchend", function () {
+    this.scrollerElement.addEventListener('touchend', function () {
       _this2._hasStartedTouch = false;
       _this2.respondIfScrollEnd();
     }, false);
 
-    window.onresize = (0, _debounce2.default)(this._onWindowResize.bind(this), 500);
+    this.scrollerListElement.addEventListener('click', function (e) {
+      if (e.target.tagName.toLowerCase() === 'span') {
+        var parentElement = e.target.parentElement;
+        var newWeekIndex = Array.from(_this2.scrollerListElement.children).indexOf(parentElement);
+        var scrollX = _this2.scrollerElement.scrollLeft;
+        var destination = newWeekIndex * _this2._scrollItemWidth;
+        (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination);
+      }
+      console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML);
+    }, false);
+    // window.onresize = debounce(this._onWindowResize.bind(this), 500)
   };
-  // Window scroll event listener
-
 
   Weeks.prototype.onScroll = function onScroll(e) {
     e.stopPropagation();
@@ -719,18 +726,9 @@ var Weeks = function (_Component) {
   };
 
   /*
-  * Events
-  */
-
-  Weeks.prototype._onWindowResize = function _onWindowResize() {}
-  // this._setCardWidths()
-  // this._setCurrentPosition()
-
-
-  /*
   * Destroy
   */
-  ;
+
 
   Weeks.prototype.destroy = function destroy() {
     this.scrollerElement.removeEventListener('scroll', this.onScroll);
@@ -743,7 +741,7 @@ var Weeks = function (_Component) {
 
 exports.default = Weeks;
 
-},{"../../utils/animate-scroll-x":7,"../../utils/debounce":8,"component-loader-js":3}],6:[function(require,module,exports){
+},{"../../utils/animate-scroll-x":7,"component-loader-js":3}],6:[function(require,module,exports){
 'use strict';
 
 var _componentLoaderJs = require('component-loader-js');
@@ -846,38 +844,6 @@ exports.default = function (element, start, destination) {
     requestAnimationFrame(scroll);
   }
   scroll();
-};
-
-},{}],8:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-var _arguments = arguments;
-
-exports.default = function (func, threshold, execAsap) {
-	var timeout = void 0;
-
-	return function () {
-		var obj = undefined,
-		    args = _arguments;
-
-		var delayed = function delayed() {
-			if (!execAsap) {
-				func.apply(obj, args);
-			}
-			timeout = null;
-		};
-
-		if (timeout) {
-			clearTimeout(timeout);
-		} else if (execAsap) {
-			func.apply(obj, args);
-		}
-
-		timeout = setTimeout(delayed, threshold || 100);
-	};
 };
 
 },{}]},{},[6])

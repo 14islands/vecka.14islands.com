@@ -167,9 +167,19 @@ h1 {
   margin: 0;
   position: relative;
   text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .Weeks-scrollerItemNumber {
   position: relative;
   top: -11px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  padding: 4px;
 }
 /*# sourceMappingURL=style.css.map */

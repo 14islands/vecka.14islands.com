@@ -57,6 +57,10 @@ function respondFromCacheThenNetwork (event) {
     )
 }
 
+function shouldHandleFetch (event) {
+  return (event.request.method === 'GET')
+}
+
 // Open cache and store assets
 self.addEventListener('install', (event) => {
   // Perform install steps
@@ -69,10 +73,13 @@ self.addEventListener('install', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.headers.get('Accept').indexOf('text/html') >= 0) {
-    respondFromNetworkThenCache(event)
-  } else {
-    respondFromCacheThenNetwork(event)
+  // Check if should handle request
+  if (this.shouldHandleFetch(event)) {
+    if (event.request.headers.get('Accept').indexOf('text/html') >= 0) {
+      respondFromNetworkThenCache(event)
+    } else {
+      respondFromCacheThenNetwork(event)
+    }
   }
 })
 
