@@ -1,7 +1,4 @@
 
-sidePadding = 14vw
-scrollItemMargin = 4px
-
 .Weeks
   position: relative
   height: 100%
@@ -12,7 +9,7 @@ scrollItemMargin = 4px
     position: relative
     z-index: 20
     top: 20vh
-    padding: 0 sidePadding
+    padding: 0 14vw
 
   &-label
     padding-left: .2rem
@@ -55,14 +52,14 @@ scrollItemMargin = 4px
 
     &:after
       position: absolute;
-      top: calc(76vh - 20px)
+      top: calc(68vh - 19px)
       left: calc(50% - 20px)
       content: ' '
 
       display: block
-      height: 40px
-      width: 40px
-      border: 3px solid hotpink
+      height: 36px
+      width: 36px
+      border: 2px solid hotpink
       border-radius: 50px
 
     &.isVisible
@@ -75,8 +72,8 @@ scrollItemMargin = 4px
     right: 50%
     bottom: 0
 
-    display: none
-    background: rgba(0, 200, 0, 0.5);
+    display: block
+    //background: rgba(0, 200, 0, 0.5);
 
   &-scroller
     overflow: auto
@@ -92,7 +89,11 @@ scrollItemMargin = 4px
     white-space: nowrap
 
     position: relative
-    top: 76vh
+    top: 68vh
+
+    // position center in middle of
+    // first item
+    margin-left: -30px
 
     // Set focus point in the middle
     left: 50%
@@ -100,23 +101,15 @@ scrollItemMargin = 4px
     padding-right: 50%
 
   &-scrollerItem
-    height: 4px
+    //height: 2px
     flex: 1
-    margin: 0 scrollItemMargin
-    background: hotpink
+    margin: 0
+    //background: white
 
     position: relative;
     text-align: center
 
-  &-scrollerItemYear
-    position: absolute
-    left: -5px
-    top: -5px
-    height: 40px
-    width: 2px
-    background: #ddd
-
-  &-scrollerItemYearText
-    position: absolute
-    top: 42px
-    left: -10px
+  &-scrollerItemNumber
+    position: relative
+    top: -11px
+    color: hotpink

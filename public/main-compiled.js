@@ -594,6 +594,10 @@ var _debounce = require('../../utils/debounce');
 
 var _debounce2 = _interopRequireDefault(_debounce);
 
+var _animateScrollX = require('../../utils/animate-scroll-x');
+
+var _animateScrollX2 = _interopRequireDefault(_animateScrollX);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -616,6 +620,7 @@ var Weeks = function (_Component) {
 
     // local vars
     _this._updateFrame = null;
+    _this._scrollEndTimer = null;
     _this._isBusyUpdating = false;
     _this._animation = { isRunning: false };
     _this._scrollItemWidth = 60;
@@ -629,13 +634,12 @@ var Weeks = function (_Component) {
     _this.cardElements = _this.el.getElementsByClassName('Weeks-cardWrapper');
 
     // init scroll
-    var listWidth = _this._scrollItemWidth * _this.numberOfWeeks + _this._sidePadding;
+    var listWidth = _this._scrollItemWidth * _this.numberOfWeeks; // + this._sidePadding
     _this.scrollerListElement.style.width = listWidth + 'px';
     _this.scrollerElement.scrollLeft = 0;
     _this.scrollerWrapperElement.classList.add('isVisible');
 
     _this._bindEvents();
-
     return _this;
   }
 
@@ -649,8 +653,20 @@ var Weeks = function (_Component) {
 
 
   Weeks.prototype.onScroll = function onScroll(e) {
+    var _this2 = this;
+
     e.stopPropagation();
     this.requestScrollUpdate(e.target);
+
+    clearTimeout(this._scrollEndTimer);
+    this._scrollEndTimer = setTimeout(function () {
+      var scrollX = _this2.scrollerElement.scrollLeft;
+      var newWeekIndex = Math.round(scrollX / _this2._scrollItemWidth);
+      newWeekIndex = Math.min(newWeekIndex, _this2.numberOfWeeks - 1);
+      console.log('on scroll end', scrollX, newWeekIndex);
+      var destination = newWeekIndex * _this2._scrollItemWidth;
+      (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination, 300, 'easeOutQuad');
+    }, 200);
   };
 
   // Updates the selected sample based on scroll position
@@ -688,8 +704,8 @@ var Weeks = function (_Component) {
   */
 
   Weeks.prototype._onWindowResize = function _onWindowResize() {}
-  //this._setCardWidths()
-  //this._setCurrentPosition()
+  // this._setCardWidths()
+  // this._setCurrentPosition()
 
 
   /*
@@ -708,7 +724,7 @@ var Weeks = function (_Component) {
 
 exports.default = Weeks;
 
-},{"../../utils/debounce":7,"component-loader-js":3}],6:[function(require,module,exports){
+},{"../../utils/animate-scroll-x":7,"../../utils/debounce":8,"component-loader-js":3}],6:[function(require,module,exports){
 'use strict';
 
 var _componentLoaderJs = require('component-loader-js');
@@ -741,6 +757,79 @@ if ('serviceWorker' in navigator) {
 }
 
 },{"./components/Weeks/Weeks":5,"component-loader-js":3}],7:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (element, start, destination) {
+  var duration = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 200;
+  var easing = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'linear';
+  var callback = arguments[5];
+
+
+  // define timing functions
+  var easings = {
+    linear: function linear(t) {
+      return t;
+    },
+    easeInQuad: function easeInQuad(t) {
+      return t * t;
+    },
+    easeOutQuad: function easeOutQuad(t) {
+      return t * (2 - t);
+    },
+    easeInOutQuad: function easeInOutQuad(t) {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    },
+    easeInCubic: function easeInCubic(t) {
+      return t * t * t;
+    },
+    easeOutCubic: function easeOutCubic(t) {
+      return --t * t * t + 1;
+    },
+    easeInOutCubic: function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    },
+    easeInQuart: function easeInQuart(t) {
+      return t * t * t * t;
+    },
+    easeOutQuart: function easeOutQuart(t) {
+      return 1 - --t * t * t * t;
+    },
+    easeInOutQuart: function easeInOutQuart(t) {
+      return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
+    },
+    easeInQuint: function easeInQuint(t) {
+      return t * t * t * t * t;
+    },
+    easeOutQuint: function easeOutQuint(t) {
+      return 1 + --t * t * t * t * t;
+    },
+    easeInOutQuint: function easeInOutQuint(t) {
+      return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
+    }
+  };
+
+  var startTime = Date.now();
+
+  function scroll() {
+    var now = Date.now();
+    var time = Math.min(1, (now - startTime) / duration);
+    var timeFunction = easings[easing](time);
+    element.scrollLeft = timeFunction * (destination - start) + start;
+
+    if (element.scrollLeft === destination) {
+      //callback();
+      return;
+    }
+    requestAnimationFrame(scroll);
+  }
+  scroll();
+};
+
+},{}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

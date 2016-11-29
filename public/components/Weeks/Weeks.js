@@ -1,38 +1,39 @@
-import {Component} from 'component-loader-js';
+import {Component} from 'component-loader-js'
 
-import debounce from '../../utils/debounce';
+import debounce from '../../utils/debounce'
+import animateScrollX from '../../utils/animate-scroll-x'
 
 // publishing custom event to any registered listener
 class Weeks extends Component {
 
-    constructor() {
-        super(...arguments);
+    constructor () {
+      super(...arguments)
 
-        // data
-        this.numberOfWeeks = this.el.dataset.weeksCount
+      // data
+      this.numberOfWeeks = this.el.dataset.weeksCount
 
-        // local vars
-        this._updateFrame = null
-        this._isBusyUpdating = false
-        this._animation = { isRunning: false }
-        this._scrollItemWidth = 60
-        this._sidePadding = 30
-        this._weekIndex = 0
+      // local vars
+      this._updateFrame = null
+      this._scrollEndTimer = null
+      this._isBusyUpdating = false
+      this._animation = { isRunning: false }
+      this._scrollItemWidth = 60
+      this._sidePadding = 30
+      this._weekIndex = 0
 
-        // elements
-        this.scrollerWrapperElement = this.el.getElementsByClassName('Weeks-scrollerWrapper')[0]
-        this.scrollerElement = this.el.getElementsByClassName('Weeks-scroller')[0]
-        this.scrollerListElement = this.el.getElementsByClassName('Weeks-scrollerList')[0]
-        this.cardElements = this.el.getElementsByClassName('Weeks-cardWrapper')
+      // elements
+      this.scrollerWrapperElement = this.el.getElementsByClassName('Weeks-scrollerWrapper')[0]
+      this.scrollerElement = this.el.getElementsByClassName('Weeks-scroller')[0]
+      this.scrollerListElement = this.el.getElementsByClassName('Weeks-scrollerList')[0]
+      this.cardElements = this.el.getElementsByClassName('Weeks-cardWrapper')
 
-        // init scroll
-        const listWidth = (this._scrollItemWidth * this.numberOfWeeks) + this._sidePadding
-        this.scrollerListElement.style.width = `${listWidth}px`
-        this.scrollerElement.scrollLeft = 0
-        this.scrollerWrapperElement.classList.add('isVisible')
+      // init scroll
+      const listWidth = (this._scrollItemWidth * this.numberOfWeeks) // + this._sidePadding
+      this.scrollerListElement.style.width = `${listWidth}px`
+      this.scrollerElement.scrollLeft = 0
+      this.scrollerWrapperElement.classList.add('isVisible')
 
-        this._bindEvents()
-
+      this._bindEvents()
     }
 
     _bindEvents () {
@@ -45,6 +46,16 @@ class Weeks extends Component {
     onScroll (e) {
       e.stopPropagation()
       this.requestScrollUpdate(e.target)
+
+      clearTimeout(this._scrollEndTimer)
+      this._scrollEndTimer = setTimeout(() => {
+        const scrollX = this.scrollerElement.scrollLeft
+        let newWeekIndex = Math.round((scrollX / this._scrollItemWidth))
+        newWeekIndex = Math.min(newWeekIndex, (this.numberOfWeeks - 1))
+        console.log('on scroll end', scrollX, newWeekIndex)
+        const destination = ((newWeekIndex * this._scrollItemWidth))
+        animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeOutQuad')
+      }, 200)
     }
 
     // Updates the selected sample based on scroll position
@@ -77,15 +88,15 @@ class Weeks extends Component {
     * Events
     */
 
-  	_onWindowResize () {
-      //this._setCardWidths()
-      //this._setCurrentPosition()
-  	}
+    _onWindowResize () {
+      // this._setCardWidths()
+      // this._setCurrentPosition()
+    }
 
     /*
     * Destroy
     */
-    destroy() {
+    destroy () {
       this.scrollerElement.removeEventListener('scroll', this.onScroll)
       window.cancelAnimationFrame(this._updateFrame)
       window.cancelAnimationFrame(this._animation.frame)
