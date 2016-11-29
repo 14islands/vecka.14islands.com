@@ -55,7 +55,7 @@ h1 {
   position: relative;
   z-index: 20;
   top: 20vh;
-  left: 30px;
+  padding: 0 14vw;
 }
 .Weeks-label {
   padding-left: 0.2rem;
@@ -66,9 +66,9 @@ h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-line-pack: start;
       align-content: flex-start;
 }
@@ -82,7 +82,8 @@ h1 {
   padding-right: 1rem;
 }
 .Weeks-dateWrapper {
-  padding-top: 0.3rem;
+  padding-top: 2rem;
+  text-align: right;
 }
 .Weeks-startDay,
 .Weeks-endDay,
@@ -104,13 +105,13 @@ h1 {
 }
 .Weeks-scrollerWrapper:after {
   position: absolute;
-  top: calc(76vh - 4px);
-  left: calc(50% - 6px);
+  top: calc(76vh - 20px);
+  left: calc(50% - 20px);
   content: ' ';
   display: block;
-  height: 12px;
-  width: 12px;
-  background: #ff69b4;
+  height: 40px;
+  width: 40px;
+  border: 3px solid #ff69b4;
   border-radius: 50px;
 }
 .Weeks-scrollerWrapper.isVisible {

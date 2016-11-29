@@ -1,5 +1,5 @@
 
-sidePadding = 30px
+sidePadding = 14vw
 scrollItemMargin = 4px
 
 .Weeks
@@ -12,7 +12,7 @@ scrollItemMargin = 4px
     position: relative
     z-index: 20
     top: 20vh
-    left: sidePadding
+    padding: 0 sidePadding
 
   &-label
     padding-left: .2rem
@@ -20,7 +20,7 @@ scrollItemMargin = 4px
   &-cardWrapper
     display: none
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-content: flex-start;
 
     &.isSelected
@@ -31,7 +31,8 @@ scrollItemMargin = 4px
      padding-right: 1rem
 
   &-dateWrapper
-    padding-top: .3rem
+    padding-top: 2rem
+    text-align: right;
 
   &-startDay,
   &-endDay,
@@ -54,14 +55,14 @@ scrollItemMargin = 4px
 
     &:after
       position: absolute;
-      top: calc(76vh - 4px)
-      left: calc(50% - 6px)
+      top: calc(76vh - 20px)
+      left: calc(50% - 20px)
       content: ' '
 
       display: block
-      height: 12px
-      width: 12px
-      background: hotpink
+      height: 40px
+      width: 40px
+      border: 3px solid hotpink
       border-radius: 50px
 
     &.isVisible

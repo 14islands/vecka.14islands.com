@@ -26,10 +26,12 @@
     <div class="Weeks" data-component="Weeks" data-weeks-count="<%= weeks.length %>">
       <div class="Weeks-tester"></div>
       <div class="Weeks-card">
-        <span class="Weeks-label">vecka</span>
         <% for(var i=0; i< weeks.length; i++) {%>
         <div class='Weeks-cardWrapper <% if (weeks[i].isTodaysWeek()) { %>isCurrent isSelected<% } %>' data-index="<%= weeks[i].getIndex() %>">
-          <h1 class="Weeks-number"><%= weeks[i].getNumber() %></h1>
+          <div class="Weeks-titleWrapper">
+            <span class="Weeks-label">vecka</span>
+            <h1 class="Weeks-number"><%= weeks[i].getNumber() %></h1>
+          </div>
           <div class="Weeks-dateWrapper">
             <span class="Weeks-startDay t-dateTime"><%= weeks[i].getStartDayText() %></span>
             <span class="Weeks-endDay t-dateTime"><%= weeks[i].getEndDayText() %></span>
