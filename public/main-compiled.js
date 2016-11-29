@@ -653,20 +653,26 @@ var Weeks = function (_Component) {
 
 
   Weeks.prototype.onScroll = function onScroll(e) {
-    var _this2 = this;
-
     e.stopPropagation();
     this.requestScrollUpdate(e.target);
+    this.respondToScrollEnd();
+  };
+
+  Weeks.prototype.respondToScrollEnd = function respondToScrollEnd() {
+    var _this2 = this;
 
     clearTimeout(this._scrollEndTimer);
     this._scrollEndTimer = setTimeout(function () {
       var scrollX = _this2.scrollerElement.scrollLeft;
-      var newWeekIndex = Math.round(scrollX / _this2._scrollItemWidth);
-      newWeekIndex = Math.min(newWeekIndex, _this2.numberOfWeeks - 1);
-      console.log('on scroll end', scrollX, newWeekIndex);
+      var newWeekIndex = _this2.calcWeekIndex(scrollX);
       var destination = newWeekIndex * _this2._scrollItemWidth;
       (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination, 300, 'easeOutQuad');
     }, 200);
+  };
+
+  Weeks.prototype.calcWeekIndex = function calcWeekIndex(scrollX) {
+    var newWeekIndex = Math.round(scrollX / this._scrollItemWidth);
+    return Math.min(newWeekIndex, this.numberOfWeeks - 1);
   };
 
   // Updates the selected sample based on scroll position
@@ -686,7 +692,7 @@ var Weeks = function (_Component) {
 
 
   Weeks.prototype.updateSelectedSampleFromScroll = function updateSelectedSampleFromScroll(scrollX) {
-    var newWeekIndex = Math.floor(scrollX / this._scrollItemWidth);
+    var newWeekIndex = this.calcWeekIndex(scrollX);
     if (newWeekIndex !== this._weekIndex && this.isValidWeek(newWeekIndex)) {
       this.cardElements[this._weekIndex].classList.remove('isSelected');
       this._weekIndex = newWeekIndex;

@@ -46,16 +46,22 @@ class Weeks extends Component {
     onScroll (e) {
       e.stopPropagation()
       this.requestScrollUpdate(e.target)
+      this.respondToScrollEnd()
+    }
 
+    respondToScrollEnd () {
       clearTimeout(this._scrollEndTimer)
       this._scrollEndTimer = setTimeout(() => {
         const scrollX = this.scrollerElement.scrollLeft
-        let newWeekIndex = Math.round((scrollX / this._scrollItemWidth))
-        newWeekIndex = Math.min(newWeekIndex, (this.numberOfWeeks - 1))
-        console.log('on scroll end', scrollX, newWeekIndex)
-        const destination = ((newWeekIndex * this._scrollItemWidth))
+        const newWeekIndex = this.calcWeekIndex(scrollX)
+        const destination = newWeekIndex * this._scrollItemWidth
         animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeOutQuad')
       }, 200)
+    }
+
+    calcWeekIndex (scrollX) {
+      const newWeekIndex = Math.round((scrollX / this._scrollItemWidth))
+      return Math.min(newWeekIndex, (this.numberOfWeeks - 1))
     }
 
     // Updates the selected sample based on scroll position
@@ -71,7 +77,7 @@ class Weeks extends Component {
     // Figures out which sample should be selected based on current scroll
     //  and triggers callback with new index
     updateSelectedSampleFromScroll (scrollX) {
-      const newWeekIndex = Math.floor(scrollX / this._scrollItemWidth)
+      const newWeekIndex = this.calcWeekIndex(scrollX)
       if (newWeekIndex !== this._weekIndex && this.isValidWeek(newWeekIndex)) {
         this.cardElements[this._weekIndex].classList.remove('isSelected')
         this._weekIndex = newWeekIndex
