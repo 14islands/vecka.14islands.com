@@ -45,6 +45,23 @@ class Week {
     return this.formatDate(this.endDayOfWeek)
   }
 
+  getSeason () {
+    const seasons = [
+      {id: 'winter', fromWeek: 1, toWeek: 12},
+      {id: 'spring', fromWeek: 10, toWeek: 21},
+      {id: 'summer', fromWeek: 22, toWeek: 33},
+      {id: 'fall', fromWeek: 34, toWeek: 45},
+      {id: 'winter', fromWeek: 46, toWeek: 52},
+    ]
+    const weekNumber = this.getNumber()
+    for (let season of seasons) {
+      if (weekNumber >= season.fromWeek && weekNumber <= season.toWeek) {
+        return season.id
+      }
+    }
+    return ''
+  }
+
   getMonthPeriod () {
     if (!this.startDayOfWeek.isSame(this.endDayOfWeek, 'year')) {
       // If start and end of week in separate year

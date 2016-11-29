@@ -639,6 +639,7 @@ var Weeks = function (_Component) {
     _this.scrollerElement.scrollLeft = 0;
     _this.scrollerWrapperElement.classList.add('isVisible');
 
+    _this.setSeasonClass();
     _this._bindEvents();
     return _this;
   }
@@ -663,7 +664,7 @@ var Weeks = function (_Component) {
         var newWeekIndex = Array.from(_this2.scrollerListElement.children).indexOf(parentElement);
         var scrollX = _this2.scrollerElement.scrollLeft;
         var destination = newWeekIndex * _this2._scrollItemWidth;
-        (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination);
+        (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination, 300, 'easeInOutQuad');
       }
       console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML);
     }, false);
@@ -703,7 +704,7 @@ var Weeks = function (_Component) {
     if (!this._isBusyUpdating && !this._animation.isRunning) {
       this._isBusyUpdating = true;
       // update in separate thread to not slow down scrolling
-      this._updateFrame = window.requestAnimationFrame(this.updateSelectedSampleFromScroll.bind(this, target.scrollLeft));
+      this._updateFrame = window.requestAnimationFrame(this.updateSelectedWeekFromScrol.bind(this, target.scrollLeft));
     }
   };
 
@@ -711,14 +712,20 @@ var Weeks = function (_Component) {
   //  and triggers callback with new index
 
 
-  Weeks.prototype.updateSelectedSampleFromScroll = function updateSelectedSampleFromScroll(scrollX) {
+  Weeks.prototype.updateSelectedWeekFromScrol = function updateSelectedWeekFromScrol(scrollX) {
     var newWeekIndex = this.calcWeekIndex(scrollX);
     if (newWeekIndex !== this._weekIndex && this.isValidWeek(newWeekIndex)) {
       this.cardElements[this._weekIndex].classList.remove('isSelected');
       this._weekIndex = newWeekIndex;
       this.cardElements[this._weekIndex].classList.add('isSelected');
+      this.setSeasonClass();
     }
     this._isBusyUpdating = false;
+  };
+
+  Weeks.prototype.setSeasonClass = function setSeasonClass() {
+    var season = this.cardElements[this._weekIndex].getAttribute('data-season');
+    document.body.className = 'season-' + season;
   };
 
   Weeks.prototype.isValidWeek = function isValidWeek(index) {

@@ -34,6 +34,7 @@ class Weeks extends Component {
       this.scrollerElement.scrollLeft = 0
       this.scrollerWrapperElement.classList.add('isVisible')
 
+      this.setSeasonClass()
       this._bindEvents()
     }
 
@@ -55,7 +56,7 @@ class Weeks extends Component {
           const newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement)
           const scrollX = this.scrollerElement.scrollLeft
           const destination = newWeekIndex * this._scrollItemWidth
-          animateScrollX(this.scrollerElement, scrollX, destination)
+          animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeInOutQuad')
         }
         console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML)
       }, false)
@@ -93,20 +94,26 @@ class Weeks extends Component {
       if (!this._isBusyUpdating && !this._animation.isRunning) {
         this._isBusyUpdating = true
         // update in separate thread to not slow down scrolling
-        this._updateFrame = window.requestAnimationFrame(this.updateSelectedSampleFromScroll.bind(this, target.scrollLeft))
+        this._updateFrame = window.requestAnimationFrame(this.updateSelectedWeekFromScrol.bind(this, target.scrollLeft))
       }
     }
 
     // Figures out which sample should be selected based on current scroll
     //  and triggers callback with new index
-    updateSelectedSampleFromScroll (scrollX) {
+    updateSelectedWeekFromScrol (scrollX) {
       const newWeekIndex = this.calcWeekIndex(scrollX)
       if (newWeekIndex !== this._weekIndex && this.isValidWeek(newWeekIndex)) {
         this.cardElements[this._weekIndex].classList.remove('isSelected')
         this._weekIndex = newWeekIndex
         this.cardElements[this._weekIndex].classList.add('isSelected')
+        this.setSeasonClass()
       }
       this._isBusyUpdating = false
+    }
+
+    setSeasonClass () {
+      const season = this.cardElements[this._weekIndex].getAttribute('data-season')
+      document.body.className = `season-${season}`
     }
 
     isValidWeek (index) {
