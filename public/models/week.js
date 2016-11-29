@@ -4,7 +4,17 @@ var moment = require('moment')
 class Week {
 
   constructor (weekIndex) {
-    moment.locale('sv')
+    moment.defineLocale('sv-custom', {
+      parentLocale: 'sv',
+      ordinal: (number) => {
+        const b = number % 10
+        const output = (~~(number % 100 / 10) === 1) ? 'e'
+          : (b === 1) ? 'a'
+          : (b === 2) ? 'a'
+          : (b === 3) ? 'e' : 'e'
+        return number + ':' + output
+      }
+    })
     this.index = weekIndex || 0
     this.current = moment().add(this.index, 'weeks')
     this.startDayOfWeek = this.current.clone().startOf('isoweek')
