@@ -15,6 +15,7 @@ class Week {
         return number + ':' + output
       }
     })
+    moment.locale('sv-custom')
     this.index = weekIndex || 0
     this.current = moment().add(this.index, 'weeks')
     this.startDayOfWeek = this.current.clone().startOf('isoweek')
