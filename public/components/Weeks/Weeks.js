@@ -42,12 +42,11 @@ class Weeks extends Component {
       this.onScrollEnd = this.onScrollEnd.bind(this)
       this.scrollerElement.addEventListener('scroll', this.onScroll)
       this.scrollerElement.addEventListener("touchstart", () => {
-        console.log('touch start')
         this._hasStartedTouch = true
       }, false);
       this.scrollerElement.addEventListener("touchend", () => {
         this._hasStartedTouch = false
-        this.respondToScrollEnd()
+        this.respondIfScrollEnd()
       }, false);
 
       window.onresize = debounce(this._onWindowResize.bind(this), 500)
@@ -56,10 +55,10 @@ class Weeks extends Component {
     onScroll (e) {
       e.stopPropagation()
       this.requestScrollUpdate(e.target)
-      this.respondToScrollEnd()
+      this.respondIfScrollEnd()
     }
 
-    respondToScrollEnd () {
+    respondIfScrollEnd () {
       clearTimeout(this._scrollEndTimer)
       this._scrollEndTimer = setTimeout(this.onScrollEnd, 200)
     }
@@ -69,7 +68,7 @@ class Weeks extends Component {
         const scrollX = this.scrollerElement.scrollLeft
         const newWeekIndex = this.calcWeekIndex(scrollX)
         const destination = newWeekIndex * this._scrollItemWidth
-        animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeOutQuad')
+        animateScrollX(this.scrollerElement, scrollX, destination)
       }
     }
 

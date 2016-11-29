@@ -651,12 +651,11 @@ var Weeks = function (_Component) {
     this.onScrollEnd = this.onScrollEnd.bind(this);
     this.scrollerElement.addEventListener('scroll', this.onScroll);
     this.scrollerElement.addEventListener("touchstart", function () {
-      console.log('touch start');
       _this2._hasStartedTouch = true;
     }, false);
     this.scrollerElement.addEventListener("touchend", function () {
       _this2._hasStartedTouch = false;
-      _this2.respondToScrollEnd();
+      _this2.respondIfScrollEnd();
     }, false);
 
     window.onresize = (0, _debounce2.default)(this._onWindowResize.bind(this), 500);
@@ -667,10 +666,10 @@ var Weeks = function (_Component) {
   Weeks.prototype.onScroll = function onScroll(e) {
     e.stopPropagation();
     this.requestScrollUpdate(e.target);
-    this.respondToScrollEnd();
+    this.respondIfScrollEnd();
   };
 
-  Weeks.prototype.respondToScrollEnd = function respondToScrollEnd() {
+  Weeks.prototype.respondIfScrollEnd = function respondIfScrollEnd() {
     clearTimeout(this._scrollEndTimer);
     this._scrollEndTimer = setTimeout(this.onScrollEnd, 200);
   };
@@ -680,7 +679,7 @@ var Weeks = function (_Component) {
       var scrollX = this.scrollerElement.scrollLeft;
       var newWeekIndex = this.calcWeekIndex(scrollX);
       var destination = newWeekIndex * this._scrollItemWidth;
-      (0, _animateScrollX2.default)(this.scrollerElement, scrollX, destination, 300, 'easeOutQuad');
+      (0, _animateScrollX2.default)(this.scrollerElement, scrollX, destination);
     }
   };
 
