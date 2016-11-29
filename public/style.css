@@ -63,9 +63,6 @@ h1 {
   top: 20vh;
   padding: 0 14vw;
 }
-.Weeks-label {
-  padding-left: 0.2rem;
-}
 .Weeks-cardWrapper {
   display: none;
   -webkit-box-orient: horizontal;
@@ -85,6 +82,7 @@ h1 {
 }
 .Weeks-number {
   cursor: pointer;
+  margin-left: -2px;
   padding-right: 1rem;
 }
 .Weeks-dateWrapper {

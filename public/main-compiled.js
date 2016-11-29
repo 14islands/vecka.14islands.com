@@ -621,6 +621,7 @@ var Weeks = function (_Component) {
     // local vars
     _this._updateFrame = null;
     _this._scrollEndTimer = null;
+    _this._hasStartedTouch = false;
     _this._isBusyUpdating = false;
     _this._animation = { isRunning: false };
     _this._scrollItemWidth = 60;
@@ -644,11 +645,22 @@ var Weeks = function (_Component) {
   }
 
   Weeks.prototype._bindEvents = function _bindEvents() {
+    var _this2 = this;
+
     this.onScroll = this.onScroll.bind(this);
+    this.onScrollEnd = this.onScrollEnd.bind(this);
     this.scrollerElement.addEventListener('scroll', this.onScroll);
+    this.scrollerElement.addEventListener("touchstart", function () {
+      console.log('touch start');
+      _this2._hasStartedTouch = true;
+    }, false);
+    this.scrollerElement.addEventListener("touchend", function () {
+      _this2._hasStartedTouch = false;
+      _this2.respondToScrollEnd();
+    }, false);
+
     window.onresize = (0, _debounce2.default)(this._onWindowResize.bind(this), 500);
   };
-
   // Window scroll event listener
 
 
@@ -659,15 +671,17 @@ var Weeks = function (_Component) {
   };
 
   Weeks.prototype.respondToScrollEnd = function respondToScrollEnd() {
-    var _this2 = this;
-
     clearTimeout(this._scrollEndTimer);
-    this._scrollEndTimer = setTimeout(function () {
-      var scrollX = _this2.scrollerElement.scrollLeft;
-      var newWeekIndex = _this2.calcWeekIndex(scrollX);
-      var destination = newWeekIndex * _this2._scrollItemWidth;
-      (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination, 300, 'easeOutQuad');
-    }, 200);
+    this._scrollEndTimer = setTimeout(this.onScrollEnd, 200);
+  };
+
+  Weeks.prototype.onScrollEnd = function onScrollEnd() {
+    if (!this._hasStartedTouch) {
+      var scrollX = this.scrollerElement.scrollLeft;
+      var newWeekIndex = this.calcWeekIndex(scrollX);
+      var destination = newWeekIndex * this._scrollItemWidth;
+      (0, _animateScrollX2.default)(this.scrollerElement, scrollX, destination, 300, 'easeOutQuad');
+    }
   };
 
   Weeks.prototype.calcWeekIndex = function calcWeekIndex(scrollX) {
