@@ -6,10 +6,25 @@
     <!-- meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= description %>">
+    <meta name="description" content="Vecka, Veckonummer">
     <meta name="theme-color" content="<%= themeColor %>">
-
-    <!-- manifest -->
     <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:locale" content="sv_SE" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="<%= name %>" />
+		<meta property="og:description" content="<%= description %>" />
+		<meta property="og:image" content="https://vecka.14islands.com/images/open-graph-image.png" />
+		<meta property="og:url" content="https://vecka.14islands.com" />
+		<meta property="og:site_name" content="<%= name %>" />
+
+		<!-- Twitter Card data -->
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:site" content="@14islands">
+		<meta name="twitter:title" content="<%= name %>">
+		<meta name="twitter:description" content="<%= description %>">
+		<meta name="twitter:creator" content="@14islands">
+		<meta name="twitter:image" content="https://vecka.14islands.com/images/open-graph-image.png">
 
     <!--styles -->
     <link rel='stylesheet' href="<%= getVersionedPath('/style.css') %>" />
@@ -19,8 +34,6 @@
     <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="<%= themeColor %>">
-    <link rel="manifest" href="/manifest.json">
-
   </head>
   <body>
 

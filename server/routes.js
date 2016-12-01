@@ -10,6 +10,7 @@ var weeks = require('./../public/models/weeks')
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
+    name: packageJson.name,
     description: packageJson.description,
     themeColor: configJson.themeColor,
     weeks: weeks.getList()
