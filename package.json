@@ -1,6 +1,6 @@
 {
-  "name": "vecka.14islands.com",
-  "description": "Alltid veta vilken vecka det är",
+  "name": "Vecka",
+  "description": "Alltid veta vilken vecka det är.",
   "version": "1.0.0",
   "private": true,
   "scripts": {
