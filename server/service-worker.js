@@ -2,7 +2,7 @@
 // Created using this tutorial
 // https://developers.google.com/web/fundamentals/primers/service-worker/?hl=en
 
-const CACHE_NAME = 'vecka-14islands-com-cache-v3'
+const CACHE_NAME = 'vecka-14islands-com-cache-v4'
 const urlsToCache = [
   '/',
   '{{stylesPath}}',
@@ -58,7 +58,7 @@ function respondFromCacheThenNetwork (event) {
 }
 
 function shouldHandleFetch (event) {
-  return (event.request.method === 'GET')
+  return (event.request.method.toLowerCase() === 'get' && (event.request.url.indexOf('/icons/') === -1) && (event.request.url.indexOf('google-analytics.com') === -1))
 }
 
 // Open cache and store assets
@@ -73,8 +73,7 @@ self.addEventListener('install', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
-  // Check if should handle request
-  if (this.shouldHandleFetch(event)) {
+  if (shouldHandleFetch(event)) {
     if (event.request.headers.get('Accept').indexOf('text/html') >= 0) {
       respondFromNetworkThenCache(event)
     } else {

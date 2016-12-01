@@ -41,26 +41,30 @@ class Weeks extends Component {
     _bindEvents () {
       this.onScroll = this.onScroll.bind(this)
       this.onScrollEnd = this.onScrollEnd.bind(this)
+      this.onDayClick = this.onDayClick.bind(this)
       this.scrollerElement.addEventListener('scroll', this.onScroll)
+      this.scrollerListElement.addEventListener('click', this.onDayClick, false)
+
       this.scrollerElement.addEventListener('touchstart', () => {
         this._hasStartedTouch = true
       }, false)
+
       this.scrollerElement.addEventListener('touchend', () => {
         this._hasStartedTouch = false
         this.respondIfScrollEnd()
       }, false)
 
-      this.scrollerListElement.addEventListener('click', (e) => {
-        if (e.target.tagName.toLowerCase() === 'span') {
-          const parentElement = e.target.parentElement
-          const newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement)
-          const scrollX = this.scrollerElement.scrollLeft
-          const destination = newWeekIndex * this._scrollItemWidth
-          animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeInOutQuad')
-        }
-        console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML)
-      }, false)
       // window.onresize = debounce(this._onWindowResize.bind(this), 500)
+    }
+
+    onDayClick (e) {
+      if (e.target.tagName.toLowerCase() === 'span') {
+        const parentElement = e.target.parentElement
+        const newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement)
+        const scrollX = this.scrollerElement.scrollLeft
+        const destination = newWeekIndex * this._scrollItemWidth
+        animateScrollX(this.scrollerElement, scrollX, destination, 300, 'easeInOutQuad')
+      }
     }
 
     onScroll (e) {

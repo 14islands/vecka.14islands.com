@@ -83,8 +83,13 @@ h1 {
   z-index: 20;
   top: 20vh;
   padding: 0 14vw;
-  max-width: 700px;
   margin: 0 auto;
+}
+@media (min-width: 700px) {
+  .Weeks-card {
+    max-width: 700px;
+    padding: 0;
+  }
 }
 .Weeks-cardWrapper {
   display: none;

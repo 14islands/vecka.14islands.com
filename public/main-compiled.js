@@ -649,26 +649,30 @@ var Weeks = function (_Component) {
 
     this.onScroll = this.onScroll.bind(this);
     this.onScrollEnd = this.onScrollEnd.bind(this);
+    this.onDayClick = this.onDayClick.bind(this);
     this.scrollerElement.addEventListener('scroll', this.onScroll);
+    this.scrollerListElement.addEventListener('click', this.onDayClick, false);
+
     this.scrollerElement.addEventListener('touchstart', function () {
       _this2._hasStartedTouch = true;
     }, false);
+
     this.scrollerElement.addEventListener('touchend', function () {
       _this2._hasStartedTouch = false;
       _this2.respondIfScrollEnd();
     }, false);
 
-    this.scrollerListElement.addEventListener('click', function (e) {
-      if (e.target.tagName.toLowerCase() === 'span') {
-        var parentElement = e.target.parentElement;
-        var newWeekIndex = Array.from(_this2.scrollerListElement.children).indexOf(parentElement);
-        var scrollX = _this2.scrollerElement.scrollLeft;
-        var destination = newWeekIndex * _this2._scrollItemWidth;
-        (0, _animateScrollX2.default)(_this2.scrollerElement, scrollX, destination, 300, 'easeInOutQuad');
-      }
-      console.log('click', e, e.target.tagName.toLowerCase(), e.target.innerHTML);
-    }, false);
     // window.onresize = debounce(this._onWindowResize.bind(this), 500)
+  };
+
+  Weeks.prototype.onDayClick = function onDayClick(e) {
+    if (e.target.tagName.toLowerCase() === 'span') {
+      var parentElement = e.target.parentElement;
+      var newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement);
+      var scrollX = this.scrollerElement.scrollLeft;
+      var destination = newWeekIndex * this._scrollItemWidth;
+      (0, _animateScrollX2.default)(this.scrollerElement, scrollX, destination, 300, 'easeInOutQuad');
+    }
   };
 
   Weeks.prototype.onScroll = function onScroll(e) {
