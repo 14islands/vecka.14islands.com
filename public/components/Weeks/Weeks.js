@@ -58,7 +58,7 @@ class Weeks extends Component {
     }
 
     onDayClick (e) {
-      if (e.target.tagName.toLowerCase() === 'span') {
+      if (e.target.tagName.toLowerCase() === 'span' && Array.from) {
         const parentElement = e.target.parentElement
         const newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement)
         const scrollX = this.scrollerElement.scrollLeft

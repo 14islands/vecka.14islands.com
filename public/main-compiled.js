@@ -666,7 +666,7 @@ var Weeks = function (_Component) {
   };
 
   Weeks.prototype.onDayClick = function onDayClick(e) {
-    if (e.target.tagName.toLowerCase() === 'span') {
+    if (e.target.tagName.toLowerCase() === 'span' && Array.from) {
       var parentElement = e.target.parentElement;
       var newWeekIndex = Array.from(this.scrollerListElement.children).indexOf(parentElement);
       var scrollX = this.scrollerElement.scrollLeft;
