@@ -26,12 +26,9 @@ npm start
 
 Node version: 6.9.1 (JavaScript features: http://node.green/)
 
-
 ## Deploy
 
-App is running in production on [https://vecka.herokuapp.com/](https://vecka.herokuapp.com/).
-
-It's hosted on Heroku using [CloudFlare](https://www.cloudflare.com/) as a CDN for caching and SSL. To bypass Cloudflare it's possible to check the app out on [https://vecka.herokuapp.com/](https://vecka.herokuapp.com/).
+App is hosted on Heroku and uses [CloudFlare](https://www.cloudflare.com/) as a CDN for caching and SSL. To bypass Cloudflare it's possible to check the app out on [https://vecka.herokuapp.com/](https://vecka.herokuapp.com/).
 
 ```
 git push heroku master
@@ -39,21 +36,14 @@ git push heroku master
 
 Note: Remember to purge CDN cache on deploy.
 
+## Seasons
+
+The app has different background color for weeks within each season.
+* Spring: Starts at [Swedish Vårdagjämningen](https://sv.wikipedia.org/wiki/V%C3%A5rdagj%C3%A4mningen), 22nd of September
+* Summer: Starts 1st of June
+* Fall: Starts at [Swedish Höstdagjämningen](https://sv.wikipedia.org/wiki/H%C3%B6stdagj%C3%A4mningen), 22nd of September
+* Winter: Starts 1st of December.
+
 ## Typeface
 
 Sweden Sans: http://sweden.identitytool.com/buildingblocks/secondary-building-blocks-always-use#our-main-typeface
-
-## Backlog (prioritized)
-
-* Add a favicon
-* Implement splash-screen
-* Implement an offline page
-* Improve swiping, make it sensitive while finger is on screen.
-* Implement nicer design for the app.
-* Click for Timeline
-* Use 14islands font with fonts-api
-* Send a push notification when a new week starts
-* Since there is a limited number of weeks in a year, we could play with each number. Use it as an SVG or do some fun stuff with it.
-* Include correct number in favicon
-* Routes for each week
-* Write a blog post

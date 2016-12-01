@@ -47,11 +47,11 @@ class Week {
 
   getSeason () {
     const seasons = [
-      {id: 'winter', fromWeek: 1, toWeek: 12},
-      {id: 'spring', fromWeek: 10, toWeek: 21},
-      {id: 'summer', fromWeek: 22, toWeek: 33},
-      {id: 'fall', fromWeek: 34, toWeek: 45},
-      {id: 'winter', fromWeek: 46, toWeek: 52},
+      {id: 'winter', fromWeek: 1, toWeek: 11},
+      {id: 'spring', fromWeek: 12, toWeek: 22},
+      {id: 'summer', fromWeek: 23, toWeek: 37},
+      {id: 'fall', fromWeek: 38, toWeek: 48},
+      {id: 'winter', fromWeek: 49, toWeek: 52}
     ]
     const weekNumber = this.getNumber()
     for (let season of seasons) {

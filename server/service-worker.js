@@ -58,7 +58,7 @@ function respondFromCacheThenNetwork (event) {
 }
 
 function shouldHandleFetch (event) {
-  return (event.request.method.toLowerCase() === 'get' && (event.request.url.indexOf('/icons/') === -1) && (event.request.url.indexOf('google-analytics.com') === -1))
+  return (event.request.method.toLowerCase() === 'get' && (event.request.url.indexOf('/icons/') === -1) && (event.request.url.indexOf('/browser-sync/') === -1) && (event.request.url.indexOf('google-analytics.com') === -1))
 }
 
 // Open cache and store assets

@@ -1,0 +1,29 @@
+.Info
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: zIndex.info
+
+  &-link
+    display: block
+    margin: 0 auto 1rem
+    width: 30px
+    cursor: pointer
+
+    @media (min-width: breakpoint.medium)
+      width: 40px
+      margin-bottom: 2rem
+
+    svg
+      .polygon-up--light
+        fill: rgba(color.primary, .7)
+
+      .polygon-up--dark
+        fill: rgba(color.primary, .5)
+
+      .polygon-down--light
+        fill: rgba(color.primary, .7)
+
+      .polygon-down--dark
+        fill: rgba(color.primary, .5)

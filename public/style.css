@@ -10,20 +10,23 @@ body {
 }
 body {
   background-color: #121738;
-  -webkit-transition: background 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
-  transition: background 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -webkit-transition: background 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: background 600ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 body.season-winter {
   background-color: #121738;
 }
 body.season-spring {
-  background-color: #186b4d;
+  background-color: #23614b;
 }
 body.season-summer {
-  background-color: #ffff65;
+  background-color: #feffa1;
 }
 body.season-fall {
   background-color: #362f2d;
+}
+.company-logo {
+  position: fixed;
 }
 @font-face {
   font-family: 'sweden_sansregular';
@@ -47,11 +50,26 @@ h1 {
     font-size: 8rem;
   }
 }
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 10rem;
+  }
+}
 .t-label {
   font-size: 0.8rem;
   color: #d17c78;
   font-weight: 300;
   text-transform: uppercase;
+}
+@media (min-width: 700px) {
+  .t-label {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .t-label {
+    font-size: 1.2rem;
+  }
 }
 .t-monthPeriodLabel {
   font-size: 0.7rem;
@@ -60,17 +78,42 @@ h1 {
   line-height: 1.7;
   text-transform: uppercase;
 }
+@media (min-width: 700px) {
+  .t-monthPeriodLabel {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .t-monthPeriodLabel {
+    font-size: 1.1rem;
+  }
+}
 .t-daysPeriod {
   font-size: 1.4rem;
   font-weight: 500;
   color: #d17c78;
   line-height: 1.3;
 }
+@media (min-width: 700px) {
+  .t-daysPeriod {
+    font-size: 1.6rem;
+  }
+}
+@media (min-width: 1200px) {
+  .t-daysPeriod {
+    font-size: 1.8rem;
+  }
+}
 .t-day {
   font-size: 1rem;
   font-weight: 500;
   color: #d17c78;
-  line-height: 1.3;
+  line-height: 1;
+}
+@media (min-width: 1200px) {
+  .t-day {
+    font-size: 1.5rem;
+  }
 }
 .Weeks {
   position: relative;
@@ -84,10 +127,10 @@ h1 {
   top: 20vh;
   padding: 0 14vw;
   margin: 0 auto;
+  max-width: 700px;
 }
-@media (min-width: 700px) {
+@media (min-width: 1200px) {
   .Weeks-card {
-    max-width: 700px;
     padding: 0;
   }
 }
@@ -113,6 +156,22 @@ h1 {
   cursor: pointer;
   margin-left: -2px;
   padding-right: 1rem;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
+}
+.Weeks-numberAnimate {
+  display: inline-block;
+  will-change: transform;
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
+  -webkit-animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+          animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.isSelected .Weeks-numberAnimate {
+  -webkit-animation-name: slide-up;
+          animation-name: slide-up;
 }
 .Weeks-dateWrapper {
   text-align: right;
@@ -144,6 +203,14 @@ h1 {
   border: 2px solid #d17c78;
   border-radius: 50px;
 }
+@media (min-width: 1200px) {
+  .Weeks-scrollerWrapper:after {
+    top: calc(68vh - 22px);
+    left: calc(50% - 23px);
+    height: 42px;
+    width: 42px;
+  }
+}
 .Weeks-scrollerWrapper.isVisible {
   opacity: 1;
 }
@@ -161,6 +228,7 @@ h1 {
   width: 100%;
   height: 100%;
   position: relative;
+  will-change: scroll-position;
 }
 .Weeks-scrollerList {
   display: -webkit-box;
@@ -200,5 +268,76 @@ h1 {
       -ms-user-select: none;
           user-select: none;
   padding: 4px;
+}
+@-webkit-keyframes slide-up {
+  from {
+    opacity: 0.5;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+@keyframes slide-up {
+  from {
+    opacity: 0.5;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Info {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+.Info-link {
+  display: block;
+  margin: 0 auto 1rem;
+  width: 30px;
+  cursor: pointer;
+}
+@media (min-width: 700px) {
+  .Info-link {
+    width: 40px;
+    margin-bottom: 2rem;
+  }
+}
+.Info-link svg .polygon-up--light {
+  fill: rgba(209,124,120,0.7);
+}
+.Info-link svg .polygon-up--dark {
+  fill: rgba(209,124,120,0.5);
+}
+.Info-link svg .polygon-down--light {
+  fill: rgba(209,124,120,0.7);
+}
+.Info-link svg .polygon-down--dark {
+  fill: rgba(209,124,120,0.5);
 }
 /*# sourceMappingURL=style.css.map */
