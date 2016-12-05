@@ -1,9 +1,10 @@
-var moment = require('moment')
+var moment = require('moment-timezone')
 
 // Constructor
 class Week {
 
   constructor (weekIndex) {
+    moment.tz.setDefault('Europe/Stockholm')
     moment.updateLocale('sv', {
       ordinal: (number) => {
         const b = number % 10
