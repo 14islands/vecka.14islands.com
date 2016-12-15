@@ -28,13 +28,13 @@ Node version: 6.9.1 (JavaScript features: http://node.green/)
 
 ## Deploy
 
-App is hosted on Heroku and uses [CloudFlare](https://www.cloudflare.com/) as a CDN for caching and SSL. To bypass Cloudflare it's possible to check the app out on [https://vecka.herokuapp.com/](https://vecka.herokuapp.com/).
+App is hosted on Heroku and uses [CloudFlare](https://www.cloudflare.com/) as a CDN for caching and SSL.
 
 ```
 git push heroku master
 ```
 
-Note: Remember to purge CDN cache on deploy.
+Note: You need access to Heroku to push it. Remember to purge CDN cache on deploy.
 
 ## Seasons
 
