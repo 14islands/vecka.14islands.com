@@ -1,6 +1,6 @@
 {
   "name": "Vecka",
-  "description": "Alltid veta vilken vecka det är.",
+  "description": "När du vill veta vilken vecka det är.",
   "version": "1.0.0",
   "private": true,
   "scripts": {

@@ -1,6 +1,6 @@
 # vecka.14islands.com
 
-Always know what week number it. Essential when living in Sweden.
+Always know the week number. Essential when living in Sweden.
 
 This app is built to test out the latest Progressive Web App features (Service Workers, Manifest.json etc.)
 
