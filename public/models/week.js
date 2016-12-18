@@ -1,10 +1,11 @@
 var moment = require('moment-timezone')
 
+const TIME_ZONE = 'Europe/Stockholm'
+
 // Constructor
 class Week {
 
   constructor (weekIndex) {
-    moment.tz.setDefault('Europe/Stockholm')
     moment.updateLocale('sv', {
       ordinal: (number) => {
         const b = number % 10
@@ -17,13 +18,13 @@ class Week {
     })
     moment.locale('sv')
     this.index = weekIndex || 0
-    this.current = moment().add(this.index, 'weeks')
+    this.current = moment().tz(TIME_ZONE).add(this.index, 'weeks')
     this.startDayOfWeek = this.current.clone().startOf('isoweek')
     this.endDayOfWeek = this.current.clone().endOf('isoweek')
   }
 
   isTodaysWeek () {
-    return this.current.isSame(moment(), 'w')
+    return this.current.isSame(moment().tz(TIME_ZONE), 'w')
   };
 
   isFirstWeekOfYear () {

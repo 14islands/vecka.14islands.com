@@ -773,17 +773,6 @@ var componentLoader = new _componentLoaderJs2.default({
 });
 componentLoader.scan();
 
-/*
-* Register service worker
-*/
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(function (reg) {
-    console.log('Service Worker register', reg);
-  }).catch(function (err) {
-    console.log('Service Worker error', err);
-  });
-}
-
 },{"./components/Weeks/Weeks":5,"component-loader-js":3}],7:[function(require,module,exports){
 'use strict';
 
