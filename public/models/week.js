@@ -24,11 +24,7 @@ class Week {
   }
 
   isTodaysWeek () {
-    return this.current.isSame(moment().tz(TIME_ZONE), 'w')
-  };
-
-  isFirstWeekOfYear () {
-    return this.getNumber() === 1
+    return this.current.isSame(moment(), 'w')
   };
 
   formatDate (date) {
