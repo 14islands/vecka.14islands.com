@@ -18,7 +18,7 @@ class Week {
     })
     moment.locale('sv')
     this.index = weekIndex || 0
-    this.current = moment().tz(TIME_ZONE).add(this.index, 'weeks')
+    this.current = moment.tz(TIME_ZONE).add(this.index, 'weeks')
     this.startDayOfWeek = this.current.clone().startOf('isoweek')
     this.endDayOfWeek = this.current.clone().endOf('isoweek')
   }
