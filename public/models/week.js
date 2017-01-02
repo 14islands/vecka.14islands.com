@@ -24,7 +24,7 @@ class Week {
   }
 
   isTodaysWeek () {
-    return this.current.isSame(moment(), 'w')
+    return this.current.isSame(moment.tz(TIME_ZONE), 'w')
   };
 
   formatDate (date) {
