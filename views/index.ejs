@@ -36,7 +36,9 @@
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="<%= themeColor %>">
   </head>
   <body>
-
+    <div data-component="Offline" class="Offline">
+      <span class="Offline-message">You seem to be offline.</span> 
+    </div>
     <div class="Weeks" data-component="Weeks" data-weeks-count="<%= weeks.length %>">
       <div class="Weeks-tester"></div>
       <div class="Weeks-card">

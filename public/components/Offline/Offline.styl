@@ -1,0 +1,25 @@
+.Offline
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: zIndex.offlineBanner
+
+  display: flex
+  justify-content: center
+  align-items: center
+  text-align: center
+  min-height: 5%
+  padding: .5rem
+  background-color: color.primary
+
+  transition: opacity 300ms ease.inOutQuad
+  opacity: 0
+
+  &.isOffline
+    opacity: 1
+
+  &-message
+    color: white
+    a
+      color: #f1f1f1

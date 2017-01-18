@@ -590,6 +590,71 @@ Object.defineProperty(exports, "__esModule", {
 
 var _componentLoaderJs = require('component-loader-js');
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var OFFLINE_CLASS = 'isOffline';
+
+// publishing custom event to any registered listener
+
+var Offline = function (_Component) {
+  _inherits(Offline, _Component);
+
+  function Offline() {
+    _classCallCheck(this, Offline);
+
+    // bind methods
+    var _this = _possibleConstructorReturn(this, _Component.apply(this, arguments));
+
+    _this.onOnlineStatus = _this.onOnlineStatus.bind(_this);
+    _this.onOfflineStatus = _this.onOfflineStatus.bind(_this);
+
+    _this._bindEvents();
+
+    console.log('navigator.onLine', navigator.onLine);
+    if (navigator.onLine !== undefined && !navigator.onLine) {
+      _this.el.classList.add(OFFLINE_CLASS);
+    }
+    return _this;
+  }
+
+  Offline.prototype._bindEvents = function _bindEvents() {
+    window.addEventListener('online', this.onOnlineStatus);
+    window.addEventListener('offline', this.onOfflineStatus);
+  };
+
+  Offline.prototype.onOnlineStatus = function onOnlineStatus() {
+    this.el.classList.remove(OFFLINE_CLASS);
+    console.log('IS ONLINE');
+  };
+
+  Offline.prototype.onOfflineStatus = function onOfflineStatus() {
+    this.el.classList.add(OFFLINE_CLASS);
+    console.log('IS OFFLINE');
+  };
+
+  Offline.prototype.destroy = function destroy() {
+    window.addEventListener('online', this.updateOnlineStatus);
+    window.addEventListener('offline', this.updateOnlineStatus);
+  };
+
+  return Offline;
+}(_componentLoaderJs.Component);
+
+exports.default = Offline;
+
+},{"component-loader-js":3}],6:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _componentLoaderJs = require('component-loader-js');
+
 var _animateScrollX = require('../../utils/animate-scroll-x');
 
 var _animateScrollX2 = _interopRequireDefault(_animateScrollX);
@@ -752,7 +817,7 @@ var Weeks = function (_Component) {
 
 exports.default = Weeks;
 
-},{"../../utils/animate-scroll-x":7,"component-loader-js":3}],6:[function(require,module,exports){
+},{"../../utils/animate-scroll-x":8,"component-loader-js":3}],7:[function(require,module,exports){
 'use strict';
 
 var _componentLoaderJs = require('component-loader-js');
@@ -763,17 +828,22 @@ var _Weeks = require('./components/Weeks/Weeks');
 
 var _Weeks2 = _interopRequireDefault(_Weeks);
 
+var _Offline = require('./components/Offline/Offline');
+
+var _Offline2 = _interopRequireDefault(_Offline);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /*
 * Load Components
 */
 var componentLoader = new _componentLoaderJs2.default({
-  Weeks: _Weeks2.default
+  Weeks: _Weeks2.default,
+  Offline: _Offline2.default
 });
 componentLoader.scan();
 
-},{"./components/Weeks/Weeks":5,"component-loader-js":3}],7:[function(require,module,exports){
+},{"./components/Offline/Offline":5,"./components/Weeks/Weeks":6,"component-loader-js":3}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -846,5 +916,5 @@ exports.default = function (element, start, destination) {
   scroll();
 };
 
-},{}]},{},[6])
+},{}]},{},[7])
 //# sourceMappingURL=main-compiled.js.map
