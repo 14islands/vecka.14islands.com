@@ -352,25 +352,23 @@ h1 {
 .Info-link {
   display: block;
   margin: 0 auto 1rem;
-  width: 30px;
+  width: 25px;
   cursor: pointer;
 }
 @media (min-width: 700px) {
   .Info-link {
-    width: 40px;
+    width: 30px;
     margin-bottom: 2rem;
   }
 }
-.Info-link svg .polygon-up--light {
+.Info-link svg rect,
+.Info-link svg polygon {
   fill: rgba(209,124,120,0.7);
+  -webkit-transition: fill 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  transition: fill 300ms cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
-.Info-link svg .polygon-up--dark {
-  fill: rgba(209,124,120,0.5);
-}
-.Info-link svg .polygon-down--light {
-  fill: rgba(209,124,120,0.7);
-}
-.Info-link svg .polygon-down--dark {
-  fill: rgba(209,124,120,0.5);
+.Info-link:hover svg rect,
+.Info-link:hover svg polygon {
+  fill: rgba(209,124,120,0.9);
 }
 /*# sourceMappingURL=style.css.map */

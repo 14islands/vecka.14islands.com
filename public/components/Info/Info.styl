@@ -8,22 +8,19 @@
   &-link
     display: block
     margin: 0 auto 1rem
-    width: 30px
+    width: 25px
     cursor: pointer
 
     @media (min-width: breakpoint.medium)
-      width: 40px
+      width: 30px
       margin-bottom: 2rem
 
-    svg
-      .polygon-up--light
-        fill: rgba(color.primary, .7)
+    svg rect,
+    svg polygon
+      fill: rgba(color.primary, .7)
+      // mix-blend-mode: multiply;
+      transition: fill 300ms ease.inQuad
 
-      .polygon-up--dark
-        fill: rgba(color.primary, .5)
-
-      .polygon-down--light
-        fill: rgba(color.primary, .7)
-
-      .polygon-down--dark
-        fill: rgba(color.primary, .5)
+    &:hover svg rect,
+    &:hover svg polygon
+      fill: rgba(color.primary, .9)
